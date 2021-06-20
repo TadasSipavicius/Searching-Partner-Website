@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
         lineBetween: {
             border: "2px solid black",
             maxHeight: 25,
-            marginTop: 7,
+            marginTop: 5,
             marginLeft: 3,
             marginRight: 5,
             backgroundColor: "black",
@@ -40,8 +40,38 @@ const useStyles = makeStyles((theme: Theme) =>
             textTransform: 'uppercase',
             fontWeight: 'bold',
             margin: theme.spacing(1,2),
-            color: "black",
+            color: "#353839d1",
             fontFamily: "Quintessential, cursive",
+        },
+        login: {
+            minWidth: 100,
+            marginLeft: 20,
+            borderRadius: 50,
+            fontWeight: "bold",
+            fontFamily: 'Mitr, sans-serif',
+            fontSize: 16,
+            border: "2px solid #23932e",
+            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
+
+        },
+        register: {
+            minWidth: 100,
+            marginRight: 10,
+            fontFamily: 'Mitr, sans-serif',
+            fontWeight: "bold",
+            fontSize: 16,
+            borderRadius: 50,
+            border: "2px solid #23932e",
+            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
+            
+        },
+        linebetweenButtons: {
+            border: "2px solid black",
+            minHeight: 40,
+            marginLeft: 5,
+            marginRight: 5,
+            backgroundColor: "black",
+            borderRadius: 10,
         }
 
 }));
@@ -51,11 +81,11 @@ export default function NavigationBar(){
     return(
         <AppBar className={classes.appBar} elevation={4}>
             <Toolbar className={classes.toolbar}>
-                <Typography className={classes.logoTitle}>
+                <Link component={NavLink} className={classes.logoTitle} to='/'>
                     Partner 
                     <Typography className={classes.lineBetween} />
                     Finderis
-                </Typography>
+                </Link>
                 <Grid item xs />
                 <Typography style={{ float: "right" }}>
                     {navigation.map((item: NavigationType) => (
@@ -64,8 +94,9 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
-                <Button>Login</Button>
-                <Button>Register</Button>
+                <Button className={classes.login}>Login</Button>
+                <Typography className={classes.linebetweenButtons} />
+                <Button className={classes.register}>Register</Button>
             </Toolbar>
         </AppBar>
     )
