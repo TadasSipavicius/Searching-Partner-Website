@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 10,
         },
         navlinks: {
-            textTransform: 'uppercase',
             fontWeight: 'bold',
             margin: theme.spacing(1,2),
             color: "#353839d1",
