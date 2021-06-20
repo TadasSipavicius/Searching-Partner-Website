@@ -2,6 +2,7 @@ import React from 'react';
 import theme from './theme';
 import { makeStyles, ThemeProvider } from '@material-ui/core';
 import {Route, Switch} from 'react-router-dom';
+import NavigationBar from './Layout/NavigationBar';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -20,6 +21,7 @@ export default function App() {
     
     <ThemeProvider theme={theme}> 
       <div className={classes.root}>
+        <NavigationBar />
         <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path='/' component={React.lazy(() => import('./Pages/Home'))}/>
