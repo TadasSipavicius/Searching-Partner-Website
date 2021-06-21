@@ -26,21 +26,29 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 'bold',
             fontSize: 28,
             letterSpacing: 2.5,
+            "&:hover": {
+                textDecoration: "none",
+                color: '#288131',
+            },
         },
         lineBetween: {
-            border: "2px solid black",
-            maxHeight: 25,
-            marginTop: 5,
+            border: "1.5px solid #353839f2",
+            maxHeight: 20,
+            marginTop: 6,
             marginLeft: 3,
             marginRight: 5,
-            backgroundColor: "black",
+            backgroundColor: "#353839f2",
             borderRadius: 10,
         },
         navlinks: {
             fontWeight: 'bold',
-            margin: theme.spacing(1,2),
-            color: "#353839d1",
+            margin: theme.spacing(1,2.5),
+            color: "#353839f2",
             fontFamily: "Quintessential, cursive",
+            fontSize: 18,
+            "&:hover": {
+                textDecoration: "underline #23932e 3px",
+            },
         },
         login: {
             minWidth: 100,
@@ -51,6 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: 16,
             border: "2px solid #23932e",
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
+            "&:hover": {
+                color: theme.palette.primary.main,
+                border: "2px solid #000000",
+                backgroundColor: "	#E0E0E0",
+                textShadow: '4px 4px 4px rgba(0, 0, 0, 0.35)',
+            },
 
         },
         register: {
@@ -62,14 +76,20 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 50,
             border: "2px solid #23932e",
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
+            "&:hover": {
+                color: theme.palette.primary.main,
+                border: "2px solid #000000",
+                backgroundColor: "	#E0E0E0",
+                textShadow: '4px 4px 4px rgba(0, 0, 0, 0.35)',
+            },
             
         },
         linebetweenButtons: {
-            border: "2px solid black",
-            minHeight: 40,
+            border: "1.5px solid #353839f2",
+            minHeight: 36,
             marginLeft: 5,
             marginRight: 5,
-            backgroundColor: "black",
+            backgroundColor: "#353839f2",
             borderRadius: 10,
         }
 
@@ -88,7 +108,7 @@ export default function NavigationBar(){
                 <Grid item xs />
                 <Typography style={{ float: "right" }}>
                     {navigation.map((item: NavigationType) => (
-                        <Link component={NavLink} to={item.to} className={classes.navlinks}>
+                        <Link component={NavLink} to={item.to} className={classes.navlinks} key={item.title}>
                             {item.title}
                         </Link>
                     ))}

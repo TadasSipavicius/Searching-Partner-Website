@@ -1,6 +1,7 @@
 interface NavigationType{
     title: string;
     to: string;
+    
 }
 
 const navigation: Array<NavigationType> = [
