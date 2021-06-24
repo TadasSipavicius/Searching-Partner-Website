@@ -1,8 +1,8 @@
 import React from 'react';
 import theme from './theme';
-import { makeStyles, ThemeProvider } from '@material-ui/core';
+import { CssBaseline, makeStyles, ThemeProvider } from '@material-ui/core';
 import {Route, Switch} from 'react-router-dom';
-import NavigationBar from './Layout/NavigationBar';
+import ResponsiveNavigationBar from './Layout/ResponsiveNavigationBar';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -20,16 +20,17 @@ export default function App() {
   return (
     
     <ThemeProvider theme={theme}> 
+      <CssBaseline />
       <div className={classes.root}>
-        <NavigationBar />
+        <ResponsiveNavigationBar />
         <React.Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          <Route exact path='/' component={React.lazy(() => import('./Pages/Home'))}/>
-          <Route exact path='/findplayers' component={React.lazy(() => import('./Pages/FindPlayers'))}/>
-          <Route exact path='/findtournaments' component={React.lazy(() => import('./Pages/FindTournaments'))}/>
-          <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
-          <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>
-        </Switch>
+          <Switch>
+            <Route exact path='/' component={React.lazy(() => import('./Pages/Home'))}/>
+            <Route exact path='/findplayers' component={React.lazy(() => import('./Pages/FindPlayers'))}/>
+            <Route exact path='/findtournaments' component={React.lazy(() => import('./Pages/FindTournaments'))}/>
+            <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
+            <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>
+          </Switch>
         </React.Suspense>
       </div>
     </ThemeProvider>
