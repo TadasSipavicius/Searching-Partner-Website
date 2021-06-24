@@ -48,7 +48,7 @@ export default function NavigationBarMobile(){
         <List className={classes.navlist}>
             {navigation.map((item: NavigationType) =>(
                 <>
-                \* Pasiskaityti apie list ir listitemus ir visa kita *\
+                {/* Pasiskaityti apie list ir listitemus ir visa kita */}
                 <ListItem
                     button
                     key={item.title}
@@ -72,7 +72,7 @@ export default function NavigationBarMobile(){
                     <MenuIcon />
                 </IconButton> 
             </Toolbar>
-            \* Pasiskaityti apie drawer *\
+            {/* Pasiskaityti apie drawer */}
             <Drawer anchor="top" open={isOpen} onClose={handleOpen}>
                 {phoneNavLink()}
             </Drawer>

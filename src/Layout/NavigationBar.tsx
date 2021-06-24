@@ -104,7 +104,7 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
-                \* Iskaidyti mygtukus i atskirus komponentus *\
+                {/* Iskaidyti mygtukus i atskirus komponentus */}
                 <Button className={classes.login}>Login</Button>
                 <Typography className={classes.linebetweenButtons} />
                 <Button className={classes.register}>Register</Button>
