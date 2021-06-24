@@ -6,6 +6,8 @@ import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 
 import { navigation, NavigationType } from '../Navigation';
+
+// Issiaiskinti ka sitas dalykas konkreciai daro
 import { NavLink } from 'react-router-dom';
 
 
@@ -102,6 +104,7 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
+                \* Iskaidyti mygtukus i atskirus komponentus *\
                 <Button className={classes.login}>Login</Button>
                 <Typography className={classes.linebetweenButtons} />
                 <Button className={classes.register}>Register</Button>

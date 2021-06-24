@@ -39,6 +39,7 @@ export default function NavigationBarMobile(){
         setIsOpen(!isOpen);
     }
     const handleNavListItemClick = (pathTo: string) => {
+        // Issiaiskinti ka sitas konkreciai daro
         history.push(pathTo);
         setIsOpen(false);
     };
@@ -47,6 +48,7 @@ export default function NavigationBarMobile(){
         <List className={classes.navlist}>
             {navigation.map((item: NavigationType) =>(
                 <>
+                \* Pasiskaityti apie list ir listitemus ir visa kita *\
                 <ListItem
                     button
                     key={item.title}
@@ -70,6 +72,7 @@ export default function NavigationBarMobile(){
                     <MenuIcon />
                 </IconButton> 
             </Toolbar>
+            \* Pasiskaityti apie drawer *\
             <Drawer anchor="top" open={isOpen} onClose={handleOpen}>
                 {phoneNavLink()}
             </Drawer>
