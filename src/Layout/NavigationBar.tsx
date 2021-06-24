@@ -1,3 +1,4 @@
+import React from 'react';
 import { AppBar, Button, Grid, Link } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -5,14 +6,13 @@ import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 
 import { navigation, NavigationType } from '../Navigation';
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         appBar: {
-            backgroundColor: "#ECECEC",
+            backgroundColor: theme.palette.secondary.main,
             justifyContent: "space-between",
         },
         toolbar: {
@@ -31,15 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
                 color: '#288131',
             },
         },
-        lineBetween: {
-            border: "1.5px solid #353839f2",
-            maxHeight: 20,
-            marginTop: 6,
-            marginLeft: 3,
-            marginRight: 5,
-            backgroundColor: "#353839f2",
-            borderRadius: 10,
-        },
         navlinks: {
             fontWeight: 'bold',
             margin: theme.spacing(1,2.5),
@@ -47,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontFamily: "Quintessential, cursive",
             fontSize: 18,
             "&:hover": {
-                textDecoration: "underline #23932e 3px",
+                textDecoration: `underline ${theme.palette.primary.main} 3px`,
             },
         },
         login: {
@@ -57,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: "bold",
             fontFamily: 'Mitr, sans-serif',
             fontSize: 16,
-            border: "2px solid #23932e",
+            border: `2px solid ${theme.palette.primary.main}`,
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
             "&:hover": {
                 color: theme.palette.primary.main,
@@ -74,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: "bold",
             fontSize: 16,
             borderRadius: 50,
-            border: "2px solid #23932e",
+            border: `2px solid ${theme.palette.primary.main}`,
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.35)',
             "&:hover": {
                 color: theme.palette.primary.main,
@@ -98,12 +89,10 @@ export default function NavigationBar(){
 
     const classes = useStyles();
     return(
-        <AppBar className={classes.appBar} elevation={4}>
+        <AppBar className={classes.appBar} position="sticky" elevation={4}>
             <Toolbar className={classes.toolbar}>
                 <Link component={NavLink} className={classes.logoTitle} to='/'>
-                    Partner 
-                    <Typography className={classes.lineBetween} />
-                    Finderis
+                    Partner_Finderis
                 </Link>
                 <Grid item xs />
                 <Typography style={{ float: "right" }}>

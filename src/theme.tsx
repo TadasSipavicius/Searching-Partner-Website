@@ -5,7 +5,10 @@ const theme = createMuiTheme({
         primary: {
             main: "#23932e",
         },
+        secondary: {
+           main: "#ECECEC",
+        }
     }
-})
+});
 
 export default theme;
