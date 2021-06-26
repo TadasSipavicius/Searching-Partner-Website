@@ -11,6 +11,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SportsTennisIcon from '@material-ui/icons/SportsTennis';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -84,9 +85,19 @@ export default function NavigationBarMobile(){
                         <ListItemText primary={item.title} />
                         
                 </ListItem>
-                {item.title !== "Blog" ? <Divider /> : null }
+                <Divider />
                 </>
             ))}
+            <ListItem
+                button
+                key="Login/Register"
+                >
+                    <ListItemIcon className={classes.listitemicon}>
+                        <DoubleArrowIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Login / Register"/>
+
+            </ListItem>
         </List>
     )
     return(
