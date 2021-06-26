@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Button, Grid, Link } from '@material-ui/core';
+import { AppBar, Grid, Link } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
@@ -9,6 +9,7 @@ import { navigation, NavigationType } from '../Navigation';
 
 // Issiaiskinti ka sitas dalykas konkreciai daro
 import { NavLink } from 'react-router-dom';
+import AuthButton from '../Componenets/AuthButton';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -104,10 +105,9 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
-                {/* Iskaidyti mygtukus i atskirus komponentus */}
-                <Button className={classes.login}>Login</Button>
+                <AuthButton className={classes.login} name="Login" />
                 <Typography className={classes.linebetweenButtons} />
-                <Button className={classes.register}>Register</Button>
+                <AuthButton className={classes.register} name="Register"></AuthButton>
             </Toolbar>
         </AppBar>
     )
