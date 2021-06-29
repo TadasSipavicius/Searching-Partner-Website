@@ -12,6 +12,7 @@ import SportsTennisIcon from '@material-ui/icons/SportsTennis';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -44,6 +45,8 @@ export default function NavigationBarMobile(){
     // Pasiskaityti ir pasirasyti ka sitas useHistory() daro
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
+    const { loginWithRedirect } = useAuth0();
+    
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
@@ -67,6 +70,7 @@ export default function NavigationBarMobile(){
             default:
         }
     }
+    
     const phoneNavLink = () => (
         <List className={classes.navlist}>
             {navigation.map((item: NavigationType) =>(
@@ -91,6 +95,7 @@ export default function NavigationBarMobile(){
             <ListItem
                 button
                 key="Login/Register"
+                onClick={() => loginWithRedirect()}
                 >
                     <ListItemIcon className={classes.listitemicon}>
                         <DoubleArrowIcon />
