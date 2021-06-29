@@ -9,7 +9,10 @@ import { navigation, NavigationType } from '../Navigation';
 
 // Issiaiskinti ka sitas dalykas konkreciai daro
 import { NavLink } from 'react-router-dom';
-import AuthButton from '../Componenets/AuthButton';
+import AuthLoginButton from '../Componenets/AuthLoginButton';
+import AuthRegisterButton from '../Componenets/AuthRegisterButton';
+import AuthLogoutButton from '../Componenets/AuthLogoutButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -63,7 +66,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         register: {
             minWidth: 100,
-            marginRight: 10,
             fontFamily: 'Mitr, sans-serif',
             fontWeight: "bold",
             fontSize: 16,
@@ -91,6 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NavigationBar(){
 
     const classes = useStyles();
+    const { isAuthenticated } = useAuth0();
     return(
         <AppBar className={classes.appBar} position="sticky" elevation={4}>
             <Toolbar className={classes.toolbar}>
@@ -105,9 +108,15 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
-                <AuthButton className={classes.login} name="Login" />
-                <Typography className={classes.linebetweenButtons} />
-                <AuthButton className={classes.register} name="Register"></AuthButton>
+                {!isAuthenticated ? (
+                    <>
+                        <AuthLoginButton className={classes.login} name="Login" />
+                        <Typography className={classes.linebetweenButtons} />
+                        <AuthRegisterButton className={classes.register} name="Register"/>
+                    </>
+                ) : (
+                    <AuthLogoutButton />
+                )}
             </Toolbar>
         </AppBar>
     )
