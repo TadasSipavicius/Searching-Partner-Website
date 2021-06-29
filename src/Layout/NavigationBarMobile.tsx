@@ -45,7 +45,7 @@ export default function NavigationBarMobile(){
     // Pasiskaityti ir pasirasyti ka sitas useHistory() daro
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
-    const { loginWithRedirect } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
     
 
     const handleOpen = () => {
@@ -92,7 +92,22 @@ export default function NavigationBarMobile(){
                 <Divider />
                 </>
             ))}
-            <ListItem
+            {isAuthenticated ? (
+                <ListItem
+                    button
+                    key='logout'
+                    onClick={() => logout({
+                        returnTo: window.location.origin,
+                    })}
+                    >
+                        <ListItemIcon className={classes.listitemicon}>
+                            <DoubleArrowIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Log Out' />
+                </ListItem>
+
+            ) : (
+                <ListItem
                 button
                 key="Login/Register"
                 onClick={() => loginWithRedirect()}
@@ -103,6 +118,8 @@ export default function NavigationBarMobile(){
                     <ListItemText primary="Login / Register"/>
 
             </ListItem>
+            )}
+
         </List>
     )
     return(
