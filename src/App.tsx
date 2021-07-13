@@ -4,6 +4,7 @@ import { CssBaseline, makeStyles, ThemeProvider } from '@material-ui/core';
 import {Route, Switch} from 'react-router-dom';
 import ResponsiveNavigationBar from './Layout/ResponsiveNavigationBar';
 import './App.css';
+import ProtectedRoute from './Components/Auth0/ProtectedRoute';
 
 const useStyles = makeStyles({
   root: {
@@ -29,6 +30,11 @@ export default function App() {
             <Route exact path='/findplayers' component={React.lazy(() => import('./Pages/FindPlayers'))}/>
             <Route exact path='/findtournaments' component={React.lazy(() => import('./Pages/FindTournaments'))}/>
             <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
+            <ProtectedRoute
+              component= {React.lazy(() => import('./Pages/Profile'))}
+              exact
+              path="/profile"
+              />
             <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>
           </Switch>
         </React.Suspense>
