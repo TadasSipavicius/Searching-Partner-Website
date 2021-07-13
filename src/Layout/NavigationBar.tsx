@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Grid, Link } from '@material-ui/core';
+import { AppBar, Button, Grid, Link, Menu } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
@@ -8,11 +8,11 @@ import { Theme } from '@material-ui/core/styles';
 import { navigation, NavigationType } from '../Navigation';
 
 // Issiaiskinti ka sitas dalykas konkreciai daro
-import { NavLink } from 'react-router-dom';
-import AuthLoginButton from '../Componenets/AuthLoginButton';
-import AuthRegisterButton from '../Componenets/AuthRegisterButton';
-import AuthLogoutButton from '../Componenets/AuthLogoutButton';
+import { NavLink, useHistory } from 'react-router-dom';
+import AuthLoginButton from '../Components/Auth0/AuthLoginButton';
+import AuthRegisterButton from '../Components/Auth0/AuthRegisterButton';
 import { useAuth0 } from '@auth0/auth0-react';
+import { MenuItem } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -87,13 +87,35 @@ const useStyles = makeStyles((theme: Theme) =>
             marginRight: 5,
             backgroundColor: "#353839f2",
             borderRadius: 10,
-        }
+        },
+
 
 }));
 export default function NavigationBar(){
 
     const classes = useStyles();
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, user, logout } = useAuth0();
+    const history = useHistory();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const handleMyAccount = () => {
+        history.push('/profile');
+        handleClose();
+    }
+
+    const handleLogOut = () => {
+        logout({
+            returnTo: window.location.origin,
+        })
+    }
     return(
         <AppBar className={classes.appBar} position="sticky" elevation={4}>
             <Toolbar className={classes.toolbar}>
@@ -115,7 +137,21 @@ export default function NavigationBar(){
                         <AuthRegisterButton className={classes.register} name="Register"/>
                     </>
                 ) : (
-                    <AuthLogoutButton />
+                    <>
+                        <Button className={classes.navlinks} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>{user?.nickname}</Button>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleMyAccount}>My account</MenuItem>
+                            <MenuItem onClick={handleLogOut}>
+                                Logout
+                            </MenuItem>
+                        </Menu>
+                    </>
                 )}
             </Toolbar>
         </AppBar>

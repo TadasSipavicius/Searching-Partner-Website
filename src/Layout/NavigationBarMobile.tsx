@@ -57,6 +57,7 @@ export default function NavigationBarMobile(){
         setIsOpen(false);
     };
 
+    //Gali buti sukurtas naujas komponentas
     const handleIcon = (buttonName: string) =>{
         switch(buttonName){
             case 'Home':
