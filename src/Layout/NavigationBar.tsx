@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NavigationBar(){
 
     const classes = useStyles();
-    const { isAuthenticated, user, logout } = useAuth0();
+    const { isAuthenticated, user, logout, isLoading } = useAuth0();
     const history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -139,7 +139,9 @@ export default function NavigationBar(){
                         </Link>
                     ))}
                 </Typography>
-                {!isAuthenticated ? (
+                {isLoading ? <div></div> 
+                :
+                !isAuthenticated ? (
                     <>
                         <AuthLoginButton className={classes.login} name="Login" />
                         <Typography className={classes.linebetweenButtons} />
@@ -165,7 +167,9 @@ export default function NavigationBar(){
                             </MenuItem>
                         </Menu>
                     </>
-                )}
+                )
+                }
+                
             </Toolbar>
         </AppBar>
     )
