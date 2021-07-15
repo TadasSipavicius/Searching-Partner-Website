@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useMobile from '../useMobile';
+import useMobile from '../../useMobile';
 import NavigationBarMobile from './NavigationBarMobile';
 import NavigationBar from './NavigationBar';
 export default function ResponsiveNavigationBar(){

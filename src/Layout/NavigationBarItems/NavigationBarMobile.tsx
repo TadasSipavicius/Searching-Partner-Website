@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useHistory} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { navigation, NavigationType } from '../Navigation';
+import { navigation, NavigationType } from '../../Navigation';
 import { ListItem } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
@@ -13,6 +13,7 @@ import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { useAuth0 } from '@auth0/auth0-react';
+import PersonIcon from '@material-ui/icons/Person';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -94,6 +95,14 @@ export default function NavigationBarMobile(){
                 </>
             ))}
             {isAuthenticated ? (
+                <>
+                <ListItem button key='my-account' onClick={() => handleNavListItemClick('profile')}>
+                    <ListItemIcon className={classes.listitemicon}>
+                        <PersonIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='My Account' />
+                </ListItem>
+                <Divider />
                 <ListItem
                     button
                     key='logout'
@@ -106,7 +115,7 @@ export default function NavigationBarMobile(){
                         </ListItemIcon>
                         <ListItemText primary='Log Out' />
                 </ListItem>
-
+                </>
             ) : (
                 <ListItem
                 button

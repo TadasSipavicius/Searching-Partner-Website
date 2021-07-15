@@ -5,12 +5,12 @@ import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 
-import { navigation, NavigationType } from '../Navigation';
+import { navigation, NavigationType } from '../../Navigation';
 
 // Issiaiskinti ka sitas dalykas konkreciai daro
 import { NavLink, useHistory } from 'react-router-dom';
-import AuthLoginButton from '../Components/Auth0/AuthLoginButton';
-import AuthRegisterButton from '../Components/Auth0/AuthRegisterButton';
+import AuthLoginButton from '../../Components/Auth0/AuthLoginButton';
+import AuthRegisterButton from '../../Components/Auth0/AuthRegisterButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { MenuItem } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';

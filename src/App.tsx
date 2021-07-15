@@ -2,7 +2,7 @@ import React from 'react';
 import theme from './theme';
 import { CssBaseline, makeStyles, ThemeProvider } from '@material-ui/core';
 import {Route, Switch} from 'react-router-dom';
-import ResponsiveNavigationBar from './Layout/ResponsiveNavigationBar';
+import ResponsiveNavigationBar from './Layout/NavigationBarItems/ResponsiveNavigationBar';
 import './App.css';
 import ProtectedRoute from './Components/Auth0/ProtectedRoute';
 
