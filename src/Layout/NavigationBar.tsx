@@ -13,6 +13,7 @@ import AuthLoginButton from '../Components/Auth0/AuthLoginButton';
 import AuthRegisterButton from '../Components/Auth0/AuthRegisterButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { MenuItem } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -88,7 +89,15 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: "#353839f2",
             borderRadius: 10,
         },
-
+        profileButton: {
+            color: theme.palette.primary.main,
+            fontSize: 15,
+            fontFamily: 'Oswald, sans-serif',
+            letterSpacing: 1.5
+        },
+        profileIcon: {
+            marginTop: 2,
+        }
 
 }));
 export default function NavigationBar(){
@@ -138,7 +147,11 @@ export default function NavigationBar(){
                     </>
                 ) : (
                     <>
-                        <Button className={classes.navlinks} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>{user?.nickname}</Button>
+                        
+                        <Button className={classes.profileButton} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                            <PersonIcon className={classes.profileIcon} />
+                            {user?.nickname}
+                        </Button>
                         <Menu
                             id="simple-menu"
                             anchorEl={anchorEl}
