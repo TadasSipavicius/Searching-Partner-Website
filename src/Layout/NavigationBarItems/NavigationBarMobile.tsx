@@ -14,6 +14,7 @@ import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { useAuth0 } from '@auth0/auth0-react';
 import PersonIcon from '@material-ui/icons/Person';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,6 +39,19 @@ const useStyles = makeStyles((theme: Theme) =>
         listitemicon: {
             minWidth: 36,
         },
+        topLine: {
+            justifyContent: "space-between",
+            maxHeight: 50,
+        },
+        mobileLogo: {
+            fontFamily: 'Lobster, sans-serif',
+            color: theme.palette.primary.main,
+            fontWeight: 'bold',
+            fontSize: 24,
+            letterSpacing: 2,
+            textDecoration: "none",
+            paddingLeft: 5
+        }
     })   
 )
 export default function NavigationBarMobile(){
@@ -75,9 +89,17 @@ export default function NavigationBarMobile(){
     
     const phoneNavLink = () => (
         <List className={classes.navlist}>
+            <ListItem className={classes.topLine}>
+                <Link to='/' className={classes.mobileLogo} onClick={handleOpen}>
+                    Partner_Finderis
+                </Link> 
+                <IconButton edge="end" onClick={handleOpen}>
+                    <CloseIcon />
+                </IconButton> 
+            </ListItem>
+            <Divider />
             {navigation.map((item: NavigationType) =>(
                 <>
-                {/* Pasiskaityti apie list ir listitemus ir visa kita */}
                 <ListItem
                     button
                     key={item.title}
