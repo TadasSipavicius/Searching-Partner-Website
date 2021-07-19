@@ -1,28 +1,48 @@
 import { Button, Container, createStyles, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
+import useMobile from '../../useMobile';
 
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         container: {
             display: "flex",
             justifyContent: "center",
+            [theme.breakpoints.down('xs')]: {
+                maxWidth: 400,
+            },
+            maxWidth: 520,
             marginTop: 15,
-            backgroundColor: "#a89090",
+            backgroundColor: "#728682",
             paddingTop: 10,
             paddingBottom: 10,
+            border: "1px solid #6e7a78",
+            boxShadow: "rgba(0, 0, 0, 0.94) 0px 1px 6px",
+            borderRadius: 6,
         },
         playerButton: {
-            borderRadius: 15,
-            border: "1px solid #23932e",
+            border: "1px solid #6e7a78",
             marginRight: 10,
-            backgroundColor: "#e08121",
+            backgroundColor: "#7fb37d",
+            fontFamily: "Roboto, sans-serif",
+            color: "white",
+            textTransform: "none",
+            borderRadius: 6,
+            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+            fontSize: 15,
+            minWidth: 160,
         },
         tournamentsButton: {
-            borderRadius: 15,
-            border: "1px solid #23932e",
+            border: "1px solid #6e7a78",
             marginLeft: 10,
-            backgroundColor: "#ab4dd1",
+            backgroundColor: "#7fb37d",
+            fontFamily: "Roboto, sans-serif",
+            color: "white",
+            textTransform: "none",
+            borderRadius: 6,
+            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+            fontSize: 15,
+            minWidth: 160,
         }
     }))
 
@@ -30,6 +50,7 @@ export default function ButtonsContainer(){
 
     const history = useHistory();
     const classes = useStyles();
+    const isMobile = useMobile();
     
     const handlePlayersPushButton = () =>{
         history.push('/findplayers');
@@ -40,13 +61,25 @@ export default function ButtonsContainer(){
     }
     return(
         <Container className={classes.container}>
-            <Button onClick={handlePlayersPushButton} className={classes.playerButton}>
-                Find Players in Your Area
-            </Button>
-            <Button onClick={handleTournamentsPushButton} className={classes.tournamentsButton}>
-                Find Active Tournaments
-            </Button>
-
+            {isMobile ?
+                <>
+                    <Button onClick={handlePlayersPushButton} className={classes.playerButton}>
+                        Find Players
+                    </Button> 
+                    <Button onClick={handleTournamentsPushButton} className={classes.tournamentsButton}>
+                        Find Tournaments
+                    </Button>
+                </>
+             :
+                <>
+                    <Button onClick={handlePlayersPushButton} className={classes.playerButton}>
+                        Find Players in Your Area
+                    </Button>
+                    <Button onClick={handleTournamentsPushButton} className={classes.tournamentsButton}>
+                        Find Active Tournaments
+                    </Button>
+                </>
+            }
         </Container>
     )
 }

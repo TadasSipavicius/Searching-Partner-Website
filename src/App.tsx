@@ -8,6 +8,7 @@ import ProtectedRoute from './Components/Auth0/ProtectedRoute';
 
 const useStyles = makeStyles({
   root: {
+      backgroundColor: "#E6F7F3",
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
