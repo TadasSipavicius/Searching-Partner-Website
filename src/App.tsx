@@ -5,7 +5,6 @@ import {Route, Switch} from 'react-router-dom';
 import ResponsiveNavigationBar from './Layout/NavigationBarItems/ResponsiveNavigationBar';
 import './App.css';
 import ProtectedRoute from './Components/Auth0/ProtectedRoute';
-
 const useStyles = makeStyles({
   root: {
       backgroundColor: "#E6F7F3",
