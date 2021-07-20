@@ -2,7 +2,8 @@ import { Button, Container, createStyles, makeStyles, Theme } from '@material-ui
 import React from 'react';
 import { useHistory } from 'react-router';
 import useMobile from '../../useMobile';
-
+import SportsTennisIcon from '@material-ui/icons/SportsTennis';
+import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         container: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles( (theme: Theme) =>
             boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
             fontSize: 15,
             minWidth: 160,
+            justifyContent: "start",
         },
         tournamentsButton: {
             border: "1px solid #6e7a78",
@@ -43,7 +45,13 @@ const useStyles = makeStyles( (theme: Theme) =>
             boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
             fontSize: 15,
             minWidth: 160,
-        }
+        },
+        icon1: {
+            marginRight: 6,
+        },
+        icon2: {
+            marginRight: 5,
+        },
     }))
 
 export default function ButtonsContainer(){
@@ -64,9 +72,11 @@ export default function ButtonsContainer(){
             {isMobile ?
                 <>
                     <Button onClick={handlePlayersPushButton} className={classes.playerButton}>
+                        <SportsTennisIcon className={classes.icon1} />
                         Find Players
                     </Button> 
                     <Button onClick={handleTournamentsPushButton} className={classes.tournamentsButton}>
+                        <LocationSearchingIcon className={classes.icon2}/>
                         Find Tournaments
                     </Button>
                 </>
