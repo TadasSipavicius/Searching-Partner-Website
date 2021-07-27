@@ -1,32 +1,14 @@
-import { Container, createStyles, Fade, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React from 'react';
 
-const useStyles = makeStyles( (theme: Theme) => 
-    createStyles({
-        main: {
-            backgroundColor: "#9baaa5",
-            borderRadius: 40,
-            marginTop: 10,
-            paddingTop: 15,
-            minHeight: "100vh"
-        },
-        divider: {
-            marginTop: 18,
-        }
-    }))
-
+import PageContainer from '../Components/PageContainer';
 export default function PageNotFound() {
 
-    const classes = useStyles();
-
-
     return(
-        <Fade in timeout={800}>
-            <Container className={classes.main}>
-                <Typography>
-                    Page not found
-                </Typography>
-            </Container>
-        </Fade>
+        <PageContainer>
+            <Typography>
+                Page not found
+            </Typography>
+        </PageContainer>
     )
 }

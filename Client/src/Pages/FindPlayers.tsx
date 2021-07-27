@@ -1,26 +1,11 @@
-import { Button, Container, createStyles, Fade, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
 
-
-const useStyles = makeStyles( (theme: Theme) => 
-    createStyles({
-        main: {
-            backgroundColor: "#9baaa5",
-            borderRadius: 40,
-            marginTop: 10,
-            paddingTop: 15,
-            minHeight: "100vh"
-        },
-        divider: {
-            marginTop: 18,
-        }
-    }))
-
+import PageContainer from '../Components/PageContainer';
 
 export default function FindPlayers() {
 
-    const classes = useStyles();
     const history = useHistory();
 
     const handleAddPost = () =>{
@@ -28,15 +13,13 @@ export default function FindPlayers() {
     }
 
     return(
-        <Fade in timeout={800}>
-            <Container className={classes.main}>
-                <Typography>
-                    FindPlayers
-                </Typography>
-                <Button onClick={handleAddPost}>
-                    Add Announcement
-                </Button>
-            </Container>
-        </Fade>
+        <PageContainer>          
+            <Typography>
+                FindPlayers
+            </Typography>
+            <Button onClick={handleAddPost}>
+                Add Announcement
+            </Button>
+        </PageContainer>
     )
 }
