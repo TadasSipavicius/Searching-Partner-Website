@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NavigationBarMobile(){
 
     const classes = useStyles();
-    // Pasiskaityti ir pasirasyti ka sitas useHistory() daro
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
@@ -67,12 +66,10 @@ export default function NavigationBarMobile(){
         setIsOpen(!isOpen);
     }
     const handleNavListItemClick = (pathTo: string) => {
-        // Issiaiskinti ka sitas konkreciai daro
         history.push(pathTo);
         setIsOpen(false);
     };
 
-    //Gali buti sukurtas naujas komponentas
     const handleIcon = (buttonName: string) =>{
         switch(buttonName){
             case 'Home':
@@ -89,7 +86,7 @@ export default function NavigationBarMobile(){
     
     const phoneNavLink = () => (
         <List className={classes.navlist}>
-            <ListItem className={classes.topLine}>
+            <ListItem className={classes.topLine} key="topline">
                 <Link to='/' className={classes.mobileLogo} onClick={handleOpen}>
                     Partner_Finderis
                 </Link> 
@@ -164,7 +161,6 @@ export default function NavigationBarMobile(){
                     <MenuIcon />
                 </IconButton> 
             </Toolbar>
-            {/* Pasiskaityti apie drawer */}
             <Drawer anchor="top" open={isOpen} onClose={handleOpen}>
                 {phoneNavLink()}
             </Drawer>
