@@ -1,11 +1,10 @@
 import React from 'react';
 import theme from './theme';
-import { CssBaseline, makeStyles, ThemeProvider } from '@material-ui/core';
+import { CssBaseline, makeStyles, ThemeProvider, Typography } from '@material-ui/core';
 import {Route, Switch} from 'react-router-dom';
 import ResponsiveNavigationBar from './Layout/NavigationBarItems/ResponsiveNavigationBar';
 import './App.css';
 import ProtectedRoute from './Components/Auth0/ProtectedRoute';
-import { Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles({

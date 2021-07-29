@@ -1,11 +1,8 @@
-import { AppBar, createStyles, Drawer, List, ListItemIcon, ListItemText, makeStyles, Theme, Toolbar } from '@material-ui/core';
+import { AppBar, createStyles, Drawer, List, ListItemIcon, ListItemText, makeStyles, Theme, Toolbar, Divider, IconButton, ListItem } from '@material-ui/core';
 import React, { useState } from 'react';
 import { Link, useHistory} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
-import IconButton from '@material-ui/core/IconButton';
 import { navigation, NavigationType } from '../../Navigation';
-import { ListItem } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 
 import HomeIcon from '@material-ui/icons/Home';
 import SportsTennisIcon from '@material-ui/icons/SportsTennis';
