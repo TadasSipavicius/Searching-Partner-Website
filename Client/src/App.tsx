@@ -37,7 +37,7 @@ export default function App() {
             <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
             <Route exact path='/createpost' component={React.lazy(() => import('./Pages/CreatePost'))}/>
             <Route exact path='/loginrequirement' component={React.lazy(() => import('./Pages/LoginRequirement'))}/>
-            {user?.sub === adminID ? <Route exact path='/createblog' component={React.lazy(() => import('./Components/AddBlogForm'))}/>
+            {user?.sub === adminID ? <Route exact path='/createblog' component={React.lazy(() => import('./Pages/CreateBlog'))}/>
              : <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>}
             <ProtectedRoute
               component= {React.lazy(() => import('./Pages/Profile'))}
