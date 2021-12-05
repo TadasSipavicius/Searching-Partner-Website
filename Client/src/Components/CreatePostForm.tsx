@@ -26,6 +26,7 @@ const useStyles = makeStyles( (theme: Theme) =>
             },
         },
         descbAndContactForm: {
+            marginTop: 5,
             minWidth: 750,
             [theme.breakpoints.down('md')]: {
                 minWidth: 600,
@@ -48,6 +49,9 @@ const useStyles = makeStyles( (theme: Theme) =>
         submitbutton: {
             marginTop: 15,
             marginBottom: 45,
+            borderRadius: 50,
+            border: `2px solid ${theme.palette.primary.main}`,
+            backgroundColor: "#cacaca"
         },
         theForm: {
             textAlign: "center",
@@ -124,8 +128,7 @@ export default function CreatePostForm(){
                 </Grid>
                 <Grid className={classes.gridContainer}>
                     <InputLabel className={classes.descbAndContactLabel} style={{marginTop: 25}}>Describe your Post:</InputLabel>
-                    <InputLabel className={classes.descbAndContactLabel}>For expl: How long are you playing... </InputLabel>
-                    <InputLabel className={classes.descbAndContactLabel}>Searching One-Time or Constant partner and etc...</InputLabel>
+                    <InputLabel className={classes.descbAndContactLabel}>For exaple: How long are you playing, Searching One-Time or Constant partner and etc... </InputLabel>
                     <TextField multiline rows={8} className={classes.descbAndContactForm} label="Post description" variant="outlined" required/>
                 </Grid>
                 <Grid className={classes.gridContainer}>
