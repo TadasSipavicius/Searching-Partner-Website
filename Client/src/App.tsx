@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import ResponsiveNavigationBar from './Layout/NavigationBarItems/ResponsiveNavigationBar';
 import './App.css';
 import ProtectedRoute from './Components/Auth0/ProtectedRoute';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const useStyles = makeStyles({
@@ -19,6 +20,8 @@ const useStyles = makeStyles({
 export default function App() {
 
   const classes = useStyles();
+  const { user } = useAuth0();
+  const adminID = process.env.REACT_APP_ADMINISTR_ID;
 
   return (
     
@@ -34,6 +37,8 @@ export default function App() {
             <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
             <Route exact path='/createpost' component={React.lazy(() => import('./Pages/CreatePost'))}/>
             <Route exact path='/loginrequirement' component={React.lazy(() => import('./Pages/LoginRequirement'))}/>
+            {user?.sub === adminID ? <Route exact path='/createblog' component={React.lazy(() => import('./Components/AddBlogForm'))}/>
+             : <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>}
             <ProtectedRoute
               component= {React.lazy(() => import('./Pages/Profile'))}
               exact
