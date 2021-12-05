@@ -3,6 +3,7 @@ import React from 'react';
 
 import PageContainer from '../Components/PageContainer';
 import AuthLoginButton from '../Components/Auth0/AuthLoginButton';
+import ContactForm from '../Components/ContactForm';
 
 export default function LoginRequirements(){
 
@@ -15,6 +16,7 @@ export default function LoginRequirements(){
                 Click Button Below
             </Typography>
             <AuthLoginButton name="Login"/>
+            <ContactForm />
         </PageContainer>
     )
 }

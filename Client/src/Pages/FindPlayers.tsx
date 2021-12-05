@@ -4,6 +4,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 import PageContainer from '../Components/PageContainer';
+import ContactForm from '../Components/ContactForm';
 
 export default function FindPlayers() {
 
@@ -26,6 +27,7 @@ export default function FindPlayers() {
             <Button onClick={handleAddPost}>
                 Add Announcement
             </Button>
+            <ContactForm />
         </PageContainer>
     )
 }
