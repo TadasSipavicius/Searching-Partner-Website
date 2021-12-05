@@ -5,7 +5,7 @@ export default function AddBlogForm(){
     return(
         <Container>
             <Typography>
-                AddBlog
+                BLOG FORM
             </Typography>
         </Container>
     )
