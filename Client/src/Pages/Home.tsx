@@ -2,6 +2,7 @@ import { createStyles, Divider, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 
 import PageContainer from '../Components/PageContainer';
+import ContactForm from '../Components/ContactForm';
 import ButtonsContainer from '../Layout/HomePageItems/ButtonsContainer';
 import ButtonsDescription from '../Layout/HomePageItems/ButtonsDescription';
 import RecentNews from '../Layout/HomePageItems/RecentNews';
@@ -27,6 +28,7 @@ export default function Home() {
             <Divider className={classes.divider}/>
             <RecentForms />
             <Divider className={classes.divider}/>
+            <ContactForm />
         </PageContainer>
 
     )
