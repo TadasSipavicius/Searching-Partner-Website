@@ -5,6 +5,7 @@ import React from 'react';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
+            position: "relative",
             backgroundColor: "#9baaa5",
             borderRadius: 40,
             marginTop: 10,
