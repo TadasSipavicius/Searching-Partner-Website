@@ -46,6 +46,11 @@ export default function App() {
               path="/createblog"
               exact
             />
+            <ProtectedAdminRoute 
+              component= {React.lazy(() => import('./Pages/CreateTournament'))}
+              path="/createtournament"
+              exact
+            />
             <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>
           </Switch>
         </React.Suspense>
