@@ -36,17 +36,15 @@ export default function App() {
             <Route exact path='/blog' component={React.lazy(() => import('./Pages/Blog'))}/>
             <Route exact path='/createpost' component={React.lazy(() => import('./Pages/CreatePost'))}/>
             <Route exact path='/loginrequirement' component={React.lazy(() => import('./Pages/LoginRequirement'))}/>
-          
             <ProtectedRoute
               component= {React.lazy(() => import('./Pages/Profile'))}
               exact
               path="/profile"
-              />
+            />
             <ProtectedAdminRoute 
+              component= {React.lazy(() => import('./Pages/CreateBlog'))}
               path="/createblog"
               exact
-              component= {React.lazy(() => import('./Pages/CreateBlog'))}
-              
             />
             <Route exact component={React.lazy(() => import('./Pages/PageNotFound'))}/>
           </Switch>
