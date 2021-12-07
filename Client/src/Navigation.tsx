@@ -7,7 +7,7 @@ interface NavigationType{
 const navigation: Array<NavigationType> = [
     {title: 'Home', to: '/'},
     {title: 'Find Players', to: '/findplayers'},
-    {title: 'Find Tournaments', to: 'findtournaments'},
+    {title: 'Find Tournaments', to: '/findtournaments'},
     {title: 'Blog', to: '/blog'}
 ]
 
