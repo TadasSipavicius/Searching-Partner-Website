@@ -5,21 +5,21 @@ import {useParams} from 'react-router-dom';
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
 
-import BlogData from '../Data/BlogData'
+import TournamentData from '../Data/TournamentData';
 
 interface RouteParams {
     id: string
 }    
 
-export default function BlogPage() {
+export default function TournamentPage() {
 
     const params = useParams<RouteParams>();
     const id = parseInt(params.id)
 
     return(
         <PageContainer>
-            {BlogData.filter(data => data.id === id).map(item =>(
-                <Container>
+            {TournamentData.filter(data => data.id === id).map(item =>(
+                <Container  >
                     <Typography>{item.title}</Typography>
                     <Typography>{item.description}</Typography>
                 </Container>

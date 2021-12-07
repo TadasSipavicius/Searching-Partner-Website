@@ -1,10 +1,35 @@
-import { Container } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import React from 'react';
+import { useHistory } from 'react-router';
 
-export default function TournamentCard(){
+const useStyles = makeStyles( (theme: Theme) => 
+    createStyles({
+        card: {
+            maxWidth: 300,
+        }
+    }))
+
+export default function TournamentCard(item){
+
+    const classes = useStyles();
+    const history = useHistory();
+
+    const handleClick = () =>{
+        history.push(`/tournament/${item.item.id}`)
+    }
+
     return(
-        <Container>
-            Tournament Card
-        </Container>
+        <Card className={classes.card}>
+            <CardActionArea onClick={handleClick}>
+                <CardContent>
+                    <Typography>
+                        {item.item.title}
+                    </Typography>
+                    <Typography>
+                        {item.item.description}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
     )
 }
