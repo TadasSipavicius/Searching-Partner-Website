@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
-
+import RecentForms from '../Layout/HomePageItems/RecentForms';
 export default function FindPlayers() {
 
     const history = useHistory();
@@ -27,6 +27,7 @@ export default function FindPlayers() {
             <Button onClick={handleAddPost}>
                 Add Announcement
             </Button>
+            <RecentForms />
             <ContactForm />
         </PageContainer>
     )
