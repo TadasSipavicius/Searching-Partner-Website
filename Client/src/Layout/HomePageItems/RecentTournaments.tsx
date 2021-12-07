@@ -3,7 +3,6 @@ import React from 'react';
 
 import DescriptionText from '../../Components/DescriptionText';
 
-
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
@@ -19,14 +18,13 @@ const useStyles = makeStyles( (theme: Theme) =>
         }
     }))
 
-
-export default function RecentForms(){
+export default function RecentTournaments(){
 
     const classes = useStyles();
 
     return(
         <Container className={classes.main}>
-            <DescriptionText name="Recent Form uploads:" />
+            <DescriptionText name="Recent Tournaments:" />
             <Divider className={classes.dividerTop} />
             <Divider className={classes.dividerBottom} />
         </Container>

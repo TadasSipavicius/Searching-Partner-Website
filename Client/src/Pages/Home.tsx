@@ -1,4 +1,3 @@
-import { createStyles, Divider, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 
 import PageContainer from '../Components/PageContainer';
@@ -7,25 +6,18 @@ import ButtonsContainer from '../Layout/HomePageItems/ButtonsContainer';
 import ButtonsDescription from '../Layout/HomePageItems/ButtonsDescription';
 import RecentNews from '../Layout/HomePageItems/RecentNews';
 import RecentForms from '../Layout/HomePageItems/RecentForms';
-
-const useStyles = makeStyles( (theme: Theme) => 
-    createStyles({
-        divider: {
-            marginTop: 18
-        }
-    }))
+import RecentTournaments from '../Layout/HomePageItems/RecentTournaments';
 
 export default function Home() {
 
-    const classes = useStyles();
-
+    
     return(
         <PageContainer>
             <ButtonsDescription />
             <ButtonsContainer />
             <RecentNews />
+            <RecentTournaments />
             <RecentForms />
-            <Divider className={classes.divider}/>
             <ContactForm />
         </PageContainer>
 
