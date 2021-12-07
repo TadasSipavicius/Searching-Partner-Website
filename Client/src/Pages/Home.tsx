@@ -23,9 +23,7 @@ export default function Home() {
         <PageContainer>
             <ButtonsDescription />
             <ButtonsContainer />
-            <Divider className={classes.divider}/>
             <RecentNews />
-            <Divider className={classes.divider}/>
             <RecentForms />
             <Divider className={classes.divider}/>
             <ContactForm />
