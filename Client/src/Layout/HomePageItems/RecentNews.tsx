@@ -2,8 +2,9 @@ import { Container, createStyles, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 
 import DescriptionText from '../../Components/DescriptionText';
+import BlogCard from '../../Components/Cards/BlogCard';
 
-
+import BlogData from '../../Data/BlogData';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
@@ -21,6 +22,10 @@ export default function RecentNews(){
     return(
         <Container className={classes.main}>
             <DescriptionText name="Recent news:" />
+            {BlogData.map(item =>(
+                <BlogCard key={item.id} item={item}/>
+            ))}
+            
         </Container>
     )
 }

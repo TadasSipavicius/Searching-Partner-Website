@@ -14,7 +14,7 @@ const useStyles = makeStyles( (theme: Theme) =>
         }
     }))
     
-export default function PageNotFound() {
+export default function CreateTournament() {
 
     const classes = useStyles();
     
