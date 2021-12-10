@@ -1,7 +1,8 @@
-import { Card, CardActionArea, CardContent, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
 
+import TennisImage from '../../Assets/Images/tennis_racket.jpg';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         card: {
@@ -21,6 +22,12 @@ export default function BlogCard(item){
     return(
         <Card className={classes.card}>
             <CardActionArea onClick={handleClick}>
+            <CardMedia
+                component="img"
+                height="140"
+                image={TennisImage}
+                alt="Tennis image"
+            />
                 <CardContent>
                     <Typography>
                         {item.item.title}
