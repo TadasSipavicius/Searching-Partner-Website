@@ -29,7 +29,7 @@ export default function RecentTournaments(){
         <Container className={classes.main}>
             <DescriptionText name="Recent Tournaments:" />
             <Divider className={classes.dividerTop} />
-            <Grid container direction="row">
+            <Grid container direction="row" spacing={2}>
             {TournamentData.map(item =>(
                 <Grid item xs={8} sm={6} md={4} lg={3}>
                     <TournamentCard key={item.id} item={item}/>

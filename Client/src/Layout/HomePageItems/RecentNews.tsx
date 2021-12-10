@@ -29,9 +29,9 @@ export default function RecentNews(){
         <Container className={classes.main}>
             <DescriptionText name="Recent news:" />
             <Divider className={classes.dividerTop} />
-            <Grid container direction="row">
+            <Grid container direction="row" spacing={2}>
             {BlogData.map(item =>(
-                <Grid item xs={8} sm={6} md={4} lg={3}>
+                <Grid item xs={8} sm={6} md={4} lg={3} >
                     <BlogCard key={item.id} item={item}/>
                 </Grid> 
             ))}
