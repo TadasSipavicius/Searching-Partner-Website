@@ -24,7 +24,7 @@ export default function TournamentCard(item){
             <CardActionArea onClick={handleClick}>
             <CardMedia
                 component="img"
-                height="140"
+                height="140"    
                 image={TournamentPhoto}
                 alt="Tennis image"
             />
