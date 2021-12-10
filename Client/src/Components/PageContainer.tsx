@@ -10,14 +10,7 @@ const useStyles = makeStyles( (theme: Theme) =>
             borderRadius: 40,
             marginTop: 10,
             paddingTop: 15,
-            minHeight: "150vh",
-
-            [theme.breakpoints.down('md')]: {
-                minHeight: "200vh",
-            },
-            [theme.breakpoints.down('sm')]: {
-                minHeight: "280vh",
-            },
+            minHeight: "120vh"
         },
     }))
 

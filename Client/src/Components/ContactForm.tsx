@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         contactForm: {
-            position: "absolute",
-            bottom: 0,
             textAlign: "center"
         },
         links:{
