@@ -6,6 +6,7 @@ import ResponsiveNavigationBar from './Layout/NavigationBarItems/ResponsiveNavig
 import './App.css';
 import ProtectedRoute from './Components/Auth0/ProtectedRoute';
 import ProtectedAdminRoute from './Components/Auth0/ProtectedAdminRoute';
+import ScrollToTop from './Components/ScrollToTop';
 
 
 const useStyles = makeStyles({
@@ -26,6 +27,7 @@ export default function App() {
     
     <ThemeProvider theme={theme}> 
       <CssBaseline />
+      <ScrollToTop />
       <div className={classes.root}>
         <ResponsiveNavigationBar />
         <React.Suspense fallback={<Typography style={{textAlign: "center"}}>Loading...</Typography>}>
