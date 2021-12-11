@@ -8,7 +8,10 @@ const useStyles = makeStyles( (theme: Theme) =>
     createStyles({
         card: {
             maxWidth: 300,
-            minHeight: 250
+            minHeight: 280
+        },
+        description: {
+            fontSize: 14
         }
     }))
 
@@ -31,10 +34,10 @@ export default function BlogCard(item){
                 alt="Tennis image"
             />
                 <CardContent>
-                    <Typography>
+                    <Typography gutterBottom variant="h5" component="div">
                         {item.item.title}
                     </Typography>
-                    <Typography>
+                    <Typography className={classes.description}>
                         {item.item.description}
                     </Typography>
                 </CardContent>
