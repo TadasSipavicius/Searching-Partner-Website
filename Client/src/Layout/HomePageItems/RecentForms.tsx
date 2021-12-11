@@ -1,9 +1,10 @@
-import { Container, createStyles, Divider, makeStyles, Theme } from '@material-ui/core';
+import { Container, createStyles, Divider, Grid, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 
 import DescriptionText from '../../Components/DescriptionText';
+import FindPlayerCard from '../../Components/Cards/FindPlayerCard';
 
-
+import FindPlayerFormData from '../../Data/FindPlayerFormData';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles( (theme: Theme) =>
             marginBottom: 10
         },
         dividerBottom: {
-            marginTop: 20
+            marginTop: 10
         }
     }))
 
@@ -28,6 +29,13 @@ export default function RecentForms(){
         <Container className={classes.main}>
             <DescriptionText name="Recent Form uploads:" />
             <Divider className={classes.dividerTop} />
+            <Grid container direction="row" spacing={2}>
+                {FindPlayerFormData.map(item => (
+                    <Grid item xs={8} sm={6} md={4} lg={3}>
+                        <FindPlayerCard key={item.id} item={item}/>
+                    </Grid>
+                ))}
+            </Grid>
             <Divider className={classes.dividerBottom} />
         </Container>
     )

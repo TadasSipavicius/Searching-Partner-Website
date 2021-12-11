@@ -3,10 +3,12 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 import TennisImage from '../../Assets/Images/tennis_racket.jpg';
+
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         card: {
             maxWidth: 300,
+            minHeight: 250
         }
     }))
 

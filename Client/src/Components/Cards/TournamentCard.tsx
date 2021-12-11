@@ -7,6 +7,7 @@ const useStyles = makeStyles( (theme: Theme) =>
     createStyles({
         card: {
             maxWidth: 300,
+            minHeight: 250
         }
     }))
 
