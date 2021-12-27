@@ -38,14 +38,19 @@ export default function Blog() {
     }
     return(
         <PageContainer>
-            <Typography>
-                Add new blog:
-            </Typography>
+
 
             {user?.sub === adminID  ?
-            <Button onClick={handleAddBlog} className={classes.playerButton}>
-                Add Blog
-            </Button> : 
+            (
+                <>
+                    <Typography>
+                        Add new blog:
+                    </Typography>
+                    <Button onClick={handleAddBlog} className={classes.playerButton}>
+                         Add Blog
+                    </Button>
+                </>
+            ) : 
             null}
             <RecentNews />
             <ContactForm />
