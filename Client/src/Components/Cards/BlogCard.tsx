@@ -24,6 +24,7 @@ export default function BlogCard(item){
     const handleClick = () =>{
         history.push(`/blog/${item.item.id}`)
     }
+
     return(
         <Card className={classes.card}>
             <CardActionArea onClick={handleClick}>
@@ -35,10 +36,10 @@ export default function BlogCard(item){
             />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {item.item.title}
+                        {item.item.blog_title}
                     </Typography>
                     <Typography className={classes.description}>
-                        {item.item.description}
+                        {item.item.blog_text}
                     </Typography>
                 </CardContent>
             </CardActionArea>
