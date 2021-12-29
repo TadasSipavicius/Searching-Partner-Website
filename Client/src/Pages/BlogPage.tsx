@@ -26,7 +26,7 @@ export default function BlogPage() {
     return(
         <PageContainer>
             {blogData.filter(data => data.id === id).map(item =>(
-                <Container>
+                <Container key={item.id}>
                     <Typography>{item.blog_title}</Typography>
                     <Typography>{item.blog_text}</Typography>
                 </Container>

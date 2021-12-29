@@ -19,7 +19,7 @@ export default function TournamentPage() {
     return(
         <PageContainer>
             {TournamentData.filter(data => data.id === id).map(item =>(
-                <Container  >
+                <Container key={item.id}>
                     <Typography>{item.title}</Typography>
                     <Typography>{item.description}</Typography>
                 </Container>

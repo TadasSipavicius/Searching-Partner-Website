@@ -31,8 +31,8 @@ export default function RecentTournaments(){
             <Divider className={classes.dividerTop} />
             <Grid container direction="row" spacing={2}>
             {TournamentData.map(item =>(
-                <Grid item xs={8} sm={6} md={4} lg={3}>
-                    <TournamentCard key={item.id} item={item}/>
+                <Grid key={item.id} item xs={8} sm={6} md={4} lg={3}>
+                    <TournamentCard item={item}/>
                 </Grid> 
             ))}
             </Grid>

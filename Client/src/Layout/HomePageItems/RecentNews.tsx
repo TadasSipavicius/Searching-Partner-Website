@@ -4,7 +4,6 @@ import Axios from 'axios';
 import DescriptionText from '../../Components/DescriptionText';
 import BlogCard from '../../Components/Cards/BlogCard';
 
-import BlogData from '../../Data/BlogData';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
@@ -38,8 +37,8 @@ export default function RecentNews(){
             <Divider className={classes.dividerTop} />
             <Grid container direction="row" spacing={2}>
             {blogData.map(item =>(
-                <Grid item xs={8} sm={6} md={4} lg={3} >
-                    <BlogCard key={item.id} item={item}/>
+                <Grid key={item.id} item xs={8} sm={6} md={4} lg={3} >
+                    <BlogCard item={item}/>
                 </Grid> 
             ))}
             </Grid>

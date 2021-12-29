@@ -31,8 +31,8 @@ export default function RecentForms(){
             <Divider className={classes.dividerTop} />
             <Grid container direction="row" spacing={2}>
                 {FindPlayerFormData.map(item => (
-                    <Grid item xs={8} sm={6} md={4} lg={3}>
-                        <FindPlayerCard key={item.id} item={item}/>
+                    <Grid key={item.id} item xs={8} sm={6} md={4} lg={3}>
+                        <FindPlayerCard item={item}/>
                     </Grid>
                 ))}
             </Grid>
