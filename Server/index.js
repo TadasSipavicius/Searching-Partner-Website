@@ -10,17 +10,25 @@ const db = mysql.createPool({
     password: "password",
     database: "partnerfinderis"
 })
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.get("/blog/get", (req, res) => {
+
+    const sqlSelectAllBlogs = "SELECT * FROM blog";
+    db.query(sqlSelectAllBlogs, (err, result) => {
+        res.send(result);
+    })
+})
 app.post("/blog/insert", (req, res) => {
     
     const blogTitle = req.body.blogTitle;
     const blogText = req.body.blogText;
-
-    const sqlInsert = "INSERT INTO `blog` (`blog_title`, `blog_text`) VALUES (?,?)";
-    db.query(sqlInsert, [blogTitle, blogText], (err, result) => {
+    const user_id = req.body.user_id;
+    const sqlInsert = "INSERT INTO `blog` (`blog_title`, `blog_text`, `user_id`) VALUES (?,?,?)";
+    db.query(sqlInsert, [blogTitle, blogText, user_id], (err, result) => {
         console.log(result);
     })
     
