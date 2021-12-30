@@ -26,7 +26,7 @@ app.get("/blog/get", (req, res) => {
 app.get("/tournament/get", (req, res) => {
 
     const sqlSelectAllTournaments = "SELECT * FROM tournament";
-    db.query(sqlSelectAllBlogs, (err, result) => {
+    db.query(sqlSelectAllTournaments, (err, result) => {
         res.send(result);
     })
 })

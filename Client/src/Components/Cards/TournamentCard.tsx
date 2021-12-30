@@ -34,10 +34,10 @@ export default function TournamentCard(item){
             />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {item.item.title}
+                        {item.item.tournament_title}
                     </Typography>
                     <Typography className={classes.description}>
-                        {item.item.description}
+                        {item.item.tournament_text}
                     </Typography>
                 </CardContent>
             </CardActionArea>

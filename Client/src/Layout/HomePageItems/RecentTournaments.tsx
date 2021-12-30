@@ -1,10 +1,9 @@
 import { Container, createStyles, Divider, Grid, makeStyles, Theme } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
 
 import DescriptionText from '../../Components/DescriptionText';
 import TournamentCard from '../../Components/Cards/TournamentCard';
-
-import TournamentData from '../../Data/TournamentData';
 
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
@@ -24,13 +23,20 @@ const useStyles = makeStyles( (theme: Theme) =>
 export default function RecentTournaments(){
 
     const classes = useStyles();
+    const [tournamentData, setTournamentData] = useState<any[]>([]);
+    
+    useEffect(() =>{
+        Axios.get("http://localhost:3001/tournament/get").then((response) =>{
+            setTournamentData(response.data);
+        });
+    }, []);
 
     return(
         <Container className={classes.main}>
             <DescriptionText name="Recent Tournaments:" />
             <Divider className={classes.dividerTop} />
             <Grid container direction="row" spacing={2}>
-            {TournamentData.map(item =>(
+            {tournamentData.map(item =>(
                 <Grid key={item.id} item xs={8} sm={6} md={4} lg={3}>
                     <TournamentCard item={item}/>
                 </Grid> 
