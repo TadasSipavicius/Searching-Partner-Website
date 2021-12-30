@@ -25,7 +25,7 @@ export default function AddBlogForm(){
         setIsOpen(false);
     }
 
-    const redirectToHomePage = () =>{
+    const redirectToBlogPage = () =>{
         history.push('/blog');
     }
 
@@ -62,17 +62,17 @@ export default function AddBlogForm(){
                     Submit Form
                 </Button>
                 <Dialog 
-                        open={isOpen}
-                        onClose={handleOnCloseDialog}
-                    >
-                        <DialogTitle>
-                            Insert is Completed. Get back to Blog page?
-                        </DialogTitle>
-                        <DialogActions>
-                            <Button onClick={redirectToHomePage}>Yes</Button>
-                            <Button onClick={handleOnCloseDialog}>No</Button>
-                        </DialogActions>
-                    </Dialog>
+                    open={isOpen}
+                    onClose={handleOnCloseDialog}
+                >
+                    <DialogTitle>
+                        Insert is Completed. Get back to Blog page?
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button onClick={redirectToBlogPage}>Yes</Button>
+                        <Button onClick={handleOnCloseDialog}>No</Button>
+                    </DialogActions>
+                </Dialog>
             </form>
         </Container>
     )

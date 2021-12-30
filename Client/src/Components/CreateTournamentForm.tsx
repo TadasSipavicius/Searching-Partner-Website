@@ -1,13 +1,18 @@
-import { Button, Container, InputLabel, TextField } from '@material-ui/core';
+import { Container, Dialog, DialogActions, DialogTitle, InputLabel, TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useHistory } from 'react-router';
 import Axios from 'axios';
 
 export default function CreateTournamentForm(){
 
     const [tournamentTitle, setTournamentTitle] = useState("");
     const [tournamentText, setTournamentText] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
     const { user } = useAuth0();
+    const history = useHistory();
 
     const handleTitleOnChange = (e) =>{
         setTournamentTitle(e.target.value);
@@ -16,14 +21,21 @@ export default function CreateTournamentForm(){
         setTournamentText(e.target.value);
     }
 
-    const onSubmitClick = () =>{
-        Axios.post("http://localhost:3001/tournament/insert", {
+    const handleOnCloseDialog = () =>{
+        setIsOpen(false);
+    }
+
+    const redirectToTournamentPage = () =>{
+        history.push('/findtournaments');
+    }
+
+    const onSubmitClick = async () =>{
+        await Axios.post("http://localhost:3001/tournament/insert", {
             tournamentTitle: tournamentTitle,
             tournamentText: tournamentText,
             user_id: user?.sub
-        }).then(() => {
-            alert("Insert is successful")
-        })
+        });
+        setIsOpen(true);
     }
 
     return(
@@ -49,9 +61,21 @@ export default function CreateTournamentForm(){
                 onChange={handleTextOnChange}
                 />
 
-                <Button onClick={onSubmitClick}>
+                <Button variant="outlined" onClick={onSubmitClick}>
                     Submit Form
                 </Button>
+                <Dialog 
+                    open={isOpen}
+                    onClose={handleOnCloseDialog}
+                >
+                    <DialogTitle>
+                        Insert is Completed. Get back to Tournament page?
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button onClick={redirectToTournamentPage}>Yes</Button>
+                        <Button onClick={handleOnCloseDialog}>No</Button>
+                    </DialogActions>
+                </Dialog>
             </form>
         </Container>
     )
