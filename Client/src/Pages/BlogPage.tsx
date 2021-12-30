@@ -26,6 +26,9 @@ export default function BlogPage() {
         });
     }, []);
 
+    const deleteBlog = (blogID) =>{
+        Axios.delete(`http://localhost:3001/blog/delete/${blogID}`);
+    }
     return(
         <PageContainer>
             {blogData.filter(data => data.id === id).map((item: BlogType) =>(
@@ -34,7 +37,7 @@ export default function BlogPage() {
                     <Typography>{item.blog_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
-                        <Button>Delete</Button>
+                        <Button onClick={() => deleteBlog(item.id)}>Delete</Button>
                         <Button>Edit</Button>
                         </>
                     ) : null}

@@ -22,6 +22,18 @@ app.get("/blog/get", (req, res) => {
         res.send(result);
     })
 })
+
+app.delete("/blog/delete/:blogID", (req, res) =>{
+    
+    const blogID = req.params.blogID;
+    const sqlDeleteBlog = "DELETE FROM blog WHERE id = ?"
+
+    db.query(sqlDeleteBlog, blogID, (err,result)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+})
 app.post("/blog/insert", (req, res) => {
     
     const blogTitle = req.body.blogTitle;
