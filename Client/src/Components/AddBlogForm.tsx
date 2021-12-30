@@ -1,5 +1,7 @@
-import { Button, Container, InputLabel, TextField } from '@material-ui/core';
+import { Container, Dialog, DialogActions, DialogTitle, InputLabel, TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useHistory } from 'react-router';
 import React, { useState } from 'react';
 import Axios from 'axios';
 
@@ -7,7 +9,10 @@ export default function AddBlogForm(){
 
     const [blogTitle, setBlogTitle] = useState("");
     const [blogText, setBlogText] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
     const { user } = useAuth0();
+    const history = useHistory();
 
     const handleTitleOnChange = (e) =>{
         setBlogTitle(e.target.value);
@@ -16,14 +21,21 @@ export default function AddBlogForm(){
         setBlogText(e.target.value);
     }
 
-    const onSubmitClick = () =>{
-        Axios.post("http://localhost:3001/blog/insert", {
+    const handleOnCloseDialog = () =>{
+        setIsOpen(false);
+    }
+
+    const redirectToHomePage = () =>{
+        history.push('/blog');
+    }
+
+    const onSubmitClick = async () =>{
+        await Axios.post("http://localhost:3001/blog/insert", {
             blogTitle: blogTitle,
             blogText: blogText,
             user_id: user?.sub
-        }).then(() => {
-            alert("Insert is successful")
         })
+        setIsOpen(true);
     }
     return(
         <Container>
@@ -46,9 +58,21 @@ export default function AddBlogForm(){
                 fullWidth
                 onChange={handleTextOnChange}
                 />
-                <Button onClick={onSubmitClick}>
+                <Button variant="outlined" onClick={onSubmitClick}>
                     Submit Form
                 </Button>
+                <Dialog 
+                        open={isOpen}
+                        onClose={handleOnCloseDialog}
+                    >
+                        <DialogTitle>
+                            Insert is Completed. Get back to Blog page?
+                        </DialogTitle>
+                        <DialogActions>
+                            <Button onClick={redirectToHomePage}>Yes</Button>
+                            <Button onClick={handleOnCloseDialog}>No</Button>
+                        </DialogActions>
+                    </Dialog>
             </form>
         </Container>
     )

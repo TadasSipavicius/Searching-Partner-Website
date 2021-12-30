@@ -67,7 +67,12 @@ app.post("/blog/insert", (req, res) => {
     const user_id = req.body.user_id;
     const sqlInsert = "INSERT INTO `blog` (`blog_title`, `blog_text`, `user_id`) VALUES (?,?,?)";
     db.query(sqlInsert, [blogTitle, blogText, user_id], (err, result) => {
-        console.log(result);
+        if(err){
+            console.log(err);
+        } else {
+            console.log("INSERT is SUCCESSFUL");
+            res.send("INSERT is SUCCESSFUL")
+        }
     }) 
 })
 
@@ -79,7 +84,12 @@ app.post("/tournament/insert", (req, res) =>{
 
     const sqlInsert = "INSERT INTO `tournament` (`tournament_title`, `tournament_text`, `user_id`) VALUES (?,?,?)";
     db.query(sqlInsert, [tournamentTitle, tournamentText, user_id], (err, result) => {
-        console.log(result);
+        if(err){
+            console.log(err);
+        } else {
+            console.log("INSERT is SUCCESSFUL");
+            res.send("INSERT is SUCCESSFUL")
+        }
     })
 })
 
