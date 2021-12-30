@@ -20,6 +20,9 @@ export default function BlogPage() {
     const [blogData, setBlogData] = useState<BlogType[]>([]);
     const adminID = process.env.REACT_APP_ADMINISTR_ID;
 
+    // !!!
+    // Reikia padaryt, kad paimtu pagal ID, o ne visus
+    // !!!
     useEffect(() =>{
         Axios.get("http://localhost:3001/blog/get").then((response) =>{
             setBlogData(response.data);
@@ -29,6 +32,7 @@ export default function BlogPage() {
     const deleteBlog = (blogID) =>{
         Axios.delete(`http://localhost:3001/blog/delete/${blogID}`);
     }
+
     return(
         <PageContainer>
             {blogData.filter(data => data.id === id).map((item: BlogType) =>(
