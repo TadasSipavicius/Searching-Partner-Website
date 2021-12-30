@@ -43,7 +43,9 @@ export default function AddBlogForm(){
                 <InputLabel>Blog title:</InputLabel>
                 <TextField 
                 label="Title" 
-                variant="outlined" 
+                variant="outlined"
+                error={blogTitle === ""}
+                helperText={blogTitle === "" ? 'Empty!' : ''} 
                 required 
                 fullWidth 
                 onChange={handleTitleOnChange}
@@ -52,15 +54,23 @@ export default function AddBlogForm(){
                 <TextField 
                 label="Blog whole text"
                 variant="outlined"
+                error={blogText === ""}
+                helperText={blogText === "" ? 'Empty!' : ''} 
                 multiline
                 rows={20}
                 required
                 fullWidth
                 onChange={handleTextOnChange}
                 />
-                <Button variant="outlined" onClick={onSubmitClick}>
-                    Submit Form
-                </Button>
+
+                {(blogTitle && blogText) === "" ? (
+                    <Button variant="outlined" disabled>Submit Form</Button>
+                ) : (
+                    <Button variant="outlined" onClick={onSubmitClick}>
+                        Submit Form
+                    </Button>
+                )}
+
                 <Dialog 
                     open={isOpen}
                     onClose={handleOnCloseDialog}
