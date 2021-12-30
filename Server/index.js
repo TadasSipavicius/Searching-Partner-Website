@@ -23,6 +23,14 @@ app.get("/blog/get", (req, res) => {
     })
 })
 
+app.get("/tournament/get", (req, res) => {
+
+    const sqlSelectAllTournaments = "SELECT * FROM tournament";
+    db.query(sqlSelectAllBlogs, (err, result) => {
+        res.send(result);
+    })
+})
+
 app.delete("/blog/delete/:blogID", (req, res) =>{
     
     const blogID = req.params.blogID;
@@ -50,7 +58,7 @@ app.post("/tournament/insert", (req, res) =>{
     const tournamentTitle = req.body.tournamentTitle;
     const tournamentText = req.body.tournamentText;
     const user_id = req.body.user_id;
-    
+
     const sqlInsert = "INSERT INTO `tournament` (`tournament_title`, `tournament_text`, `user_id`) VALUES (?,?,?)";
     db.query(sqlInsert, [tournamentTitle, tournamentText, user_id], (err, result) => {
         console.log(result);
