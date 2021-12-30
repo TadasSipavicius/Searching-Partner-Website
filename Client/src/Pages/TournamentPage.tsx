@@ -18,7 +18,7 @@ export default function TournamentPage() {
     const { user } = useAuth0();
     const [tournamentData, setTournamentData] = useState<any[]>([]);
     const adminID = process.env.REACT_APP_ADMINISTR_ID;
-    
+
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
     // !!!
@@ -28,6 +28,9 @@ export default function TournamentPage() {
         });
     }, []);
 
+    const deleteTournament = (tournamentID) =>{
+        Axios.delete(`http://localhost:3001/tournament/delete/${tournamentID}`);
+    }
     return(
         <PageContainer>
             {tournamentData.filter(data => data.id === id).map(item =>(
@@ -36,7 +39,7 @@ export default function TournamentPage() {
                     <Typography>{item.tournament_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
-                        <Button>Delete</Button>
+                        <Button onClick={() => deleteTournament(item.id)}>Delete</Button>
                         <Button>Edit</Button>
                         </>
                     ) : null}
