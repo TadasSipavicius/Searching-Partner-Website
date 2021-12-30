@@ -39,6 +39,9 @@ app.delete("/blog/delete/:blogID", (req, res) =>{
     db.query(sqlDeleteBlog, blogID, (err,result)=>{
         if(err){
             console.log(err);
+        } else {
+            console.log("DELETE IS SUCCESSFUL");
+            res.send("Successful deletion");
         }
     });
 })
@@ -51,7 +54,7 @@ app.delete("/tournament/delete/:tournamentID", (req, res) =>{
     db.query(sqlDeleteTournament, tournamentID, (err,result)=>{
         if(err){
             console.log(err);
-        } else{
+        } else {
             console.log("DELETE IS SUCCESSFUL");
             res.send("Successful deletion");
         }

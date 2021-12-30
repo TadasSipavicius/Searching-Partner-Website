@@ -33,7 +33,7 @@ export default function TournamentPage() {
         });
     }, []);
 
-    const handleOnCloseDialong = () =>{
+    const handleOnCloseDialog = () =>{
         setIsOpen(false);
     }
 
@@ -60,14 +60,14 @@ export default function TournamentPage() {
                     ) : null}
                     <Dialog 
                         open={isOpen}
-                        onClose={handleOnCloseDialong}
+                        onClose={handleOnCloseDialog}
                     >
                         <DialogTitle>
                             Delete is Completed. Get back to Home page?
                         </DialogTitle>
                         <DialogActions>
                             <Button onClick={redirectToHomePage}>Yes</Button>
-                            <Button onClick={handleOnCloseDialong}>No</Button>
+                            <Button onClick={handleOnCloseDialog}>No</Button>
                         </DialogActions>
                     </Dialog>
                 </Container>
