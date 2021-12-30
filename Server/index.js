@@ -42,6 +42,18 @@ app.delete("/blog/delete/:blogID", (req, res) =>{
         }
     });
 })
+
+app.delete("/tournament/delete/:tournamentID", (req, res) =>{
+    
+    const tournamentID = req.params.tournamentID;
+    const sqlDeleteTournament = "DELETE FROM tournament WHERE id = ?"
+
+    db.query(sqlDeleteTournament, tournamentID, (err,result)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+})
 app.post("/blog/insert", (req, res) => {
     
     const blogTitle = req.body.blogTitle;
