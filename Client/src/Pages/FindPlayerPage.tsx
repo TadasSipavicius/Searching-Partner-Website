@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Container, Typography } from '@material-ui/core';
 import {useParams} from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
@@ -16,7 +15,6 @@ export default function FindPlayerPage() {
 
     const params = useParams<RouteParams>();
     const id = parseInt(params.id)
-    const { user } = useAuth0();
     
     return(
         <PageContainer>

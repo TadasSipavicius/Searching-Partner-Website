@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Typography } from '@material-ui/core';
+import { Container, Dialog, DialogActions, DialogTitle, Typography } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import {useParams} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Axios from 'axios';
-
+import { useHistory } from 'react-router';
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
 
@@ -14,10 +15,14 @@ interface RouteParams {
 export default function TournamentPage() {
 
     const params = useParams<RouteParams>();
-    const id = parseInt(params.id)
+    const id = parseInt(params.id);
+    const history = useHistory();
     const { user } = useAuth0();
-    const [tournamentData, setTournamentData] = useState<any[]>([]);
     const adminID = process.env.REACT_APP_ADMINISTR_ID;
+
+    const [tournamentData, setTournamentData] = useState<any[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
+   
 
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
@@ -28,9 +33,19 @@ export default function TournamentPage() {
         });
     }, []);
 
-    const deleteTournament = (tournamentID) =>{
-        Axios.delete(`http://localhost:3001/tournament/delete/${tournamentID}`);
+    const handleOnCloseDialong = () =>{
+        setIsOpen(false);
     }
+
+    const redirectToHomePage = () =>{
+        history.push('/');
+    }
+
+    const deleteTournament = async (tournamentID) =>{
+        await Axios.delete(`http://localhost:3001/tournament/delete/${tournamentID}`);
+        setIsOpen(true);
+    }
+
     return(
         <PageContainer>
             {tournamentData.filter(data => data.id === id).map(item =>(
@@ -39,11 +54,22 @@ export default function TournamentPage() {
                     <Typography>{item.tournament_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
-                        <Button onClick={() => deleteTournament(item.id)}>Delete</Button>
-                        <Button>Edit</Button>
+                        <Button variant="contained" color="error" onClick={() => deleteTournament(item.id)}>Delete</Button>
+                        <Button variant="contained" color="success">Edit</Button>
                         </>
                     ) : null}
-                    
+                    <Dialog 
+                        open={isOpen}
+                        onClose={handleOnCloseDialong}
+                    >
+                        <DialogTitle>
+                            Delete is Completed. Get back to Home page?
+                        </DialogTitle>
+                        <DialogActions>
+                            <Button onClick={redirectToHomePage}>Yes</Button>
+                            <Button onClick={handleOnCloseDialong}>No</Button>
+                        </DialogActions>
+                    </Dialog>
                 </Container>
             ))}
             <ContactForm />
