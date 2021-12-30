@@ -45,6 +45,8 @@ export default function CreateTournamentForm(){
                 <TextField 
                 label="Title" 
                 variant="outlined"
+                error={tournamentTitle === ""}
+                helperText={tournamentTitle === "" ? 'Empty!' : ''}
                 required 
                 fullWidth 
                 onChange={handleTitleOnChange}
@@ -54,16 +56,23 @@ export default function CreateTournamentForm(){
                 <TextField 
                 label="Tournament whole text"
                 variant="outlined"
+                error={tournamentText === ""}
+                helperText={tournamentText === "" ? 'Empty!' : ''}
                 multiline
                 rows={20}
                 required
                 fullWidth
                 onChange={handleTextOnChange}
                 />
-
-                <Button variant="outlined" onClick={onSubmitClick}>
-                    Submit Form
-                </Button>
+                
+                {((tournamentTitle && tournamentText) === "") ? (
+                    <Button variant="outlined" disabled>Submit Form</Button>
+                ) : (
+                    <Button variant="outlined" onClick={onSubmitClick}>
+                        Submit Form
+                    </Button>
+                )}
+                
                 <Dialog 
                     open={isOpen}
                     onClose={handleOnCloseDialog}
