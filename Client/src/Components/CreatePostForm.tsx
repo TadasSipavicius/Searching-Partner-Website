@@ -1,5 +1,9 @@
-import { Box, Button, Container, createStyles, Divider, Grid, InputLabel, Link, makeStyles, TextField, Theme } from '@material-ui/core';
-import React from 'react';
+import { Box, Container, createStyles, Dialog, DialogActions, DialogTitle, Divider, Grid, InputLabel, Link, makeStyles, TextField, Theme } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import Axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
@@ -71,8 +75,69 @@ const useStyles = makeStyles( (theme: Theme) =>
 
 export default function CreatePostForm(){
 
+    const { user } = useAuth0();
+    const history = useHistory();
     const classes = useStyles();
+
+    const [playerName, setPlayerName] = useState("");
+    const [playerAge, setPlayerAge] = useState("");
+    const [playerGender, setPlayerGender] = useState("");
+    const [playerNTRP, setPlayerNTRP] = useState("");
+    const [playerCity, setPlayerCity] = useState("");
+    const [playerTime, setPlayerTime] = useState("");
+    const [playerDescription, setPlayerDescription] = useState("");
+    const [playerContactInfo, setPlayerContactInfo] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
     
+
+    const handleNameOnChange = (e) =>{
+        setPlayerName(e.target.value);
+    }
+    const handleAgeOnChange = (e) =>{
+        setPlayerAge(e.target.value);
+    }
+    const handleGenderOnChange = (e) =>{
+        setPlayerGender(e.target.value);
+    }
+    const handleNTPROnChange = (e) =>{
+        setPlayerNTRP(e.target.value);
+    }
+    const handleCityOnChange = (e) =>{
+        setPlayerCity(e.target.value);
+    }
+    const handleTimeOnChange = (e) =>{
+        setPlayerTime(e.target.value);
+    }
+    const handleDescriptionOnChange = (e) =>{
+        setPlayerDescription(e.target.value);
+    }
+    const handleContactInfoOnChange = (e) =>{
+        setPlayerContactInfo(e.target.value);
+    }
+
+    const handleOnCloseDialog = () =>{
+        setIsOpen(false);
+    }
+
+    const redirectToFindPlayerPage = () =>{
+        history.push('/findplayers');
+    }
+
+    const onSubmitClick = async () =>{
+        await Axios.post("http://localhost:3001/findplayer/insert", {
+            playerName: playerName,
+            playerAge: playerAge,
+            playerGender: playerGender,
+            playerNTRP: playerNTRP,
+            playerCity: playerCity,
+            playerTime: playerTime,
+            playerDescription: playerDescription,
+            playerContactInfo: playerContactInfo,
+            playerUser_id: user?.sub
+        });
+        setIsOpen(true);
+    }
     return(
         <Container className={classes.theForm}>
             <form>
@@ -81,13 +146,26 @@ export default function CreatePostForm(){
                         <InputLabel className={classes.theLabel} >
                             Write your Name or Nickname:
                         </InputLabel>
-                        <TextField className={classes.formField} label="Name" variant="outlined" required/>
+                        <TextField 
+                        className={classes.formField} 
+                        label="Name" 
+                        variant="outlined" 
+                        required
+                        onChange={handleNameOnChange}
+                        error={playerName === ""}
+                        helperText={playerName === "" ? 'Empty!' : ''}
+                        />
                     </Grid>
                     <Grid xs={12} lg={4} item>
                         <InputLabel className={classes.theLabel}>
                             Write your Age:
                         </InputLabel>
-                        <TextField className={classes.formField} label="Your Age" variant="outlined"/>
+                        <TextField 
+                        className={classes.formField} 
+                        label="Your Age" 
+                        variant="outlined"
+                        onChange={handleAgeOnChange}
+                        />
                     </Grid>   
                 </Grid>
 
@@ -101,13 +179,24 @@ export default function CreatePostForm(){
                         label="Gender"
                         variant="outlined"
                         required
+                        onChange={handleGenderOnChange}
+                        error={playerGender === ""}
+                        helperText={playerGender === "" ? 'Empty!' : ''}
                         />
                     </Grid> 
                     <Grid sm={12} lg={4} item>
                         <InputLabel className={classes.theLabel}>
                             <Link href="https://tenisonamai.lt/teniso-lygio-ivertinimas-pagal-ntrp/" target="_blank" rel="noopener">Click to read about NTRP</Link>
                         </InputLabel>
-                        <TextField className={classes.formField} label="Your NTRP level" variant="outlined" required/>
+                        <TextField 
+                        className={classes.formField} 
+                        label="Your NTRP level" 
+                        variant="outlined" 
+                        required
+                        onChange={handleNTPROnChange}
+                        error={playerNTRP === ""}
+                        helperText={playerNTRP === "" ? 'Empty!' : ''}
+                        />
                     </Grid>
 
                 </Grid>
@@ -116,33 +205,86 @@ export default function CreatePostForm(){
                         <InputLabel className={classes.theLabel}>
                             Write where you want to play Tennis:
                         </InputLabel>
-                        <TextField className={classes.formField} label="City/Cities" variant="outlined" required/>
+                        <TextField 
+                        className={classes.formField} 
+                        label="City/Cities" 
+                        variant="outlined" 
+                        required
+                        onChange={handleCityOnChange}
+                        error={playerCity === ""}
+                        helperText={playerCity === "" ? 'Empty!' : ''}
+                        />
                     </Grid>
                     <Grid sm={12} lg={4} item>
                         <InputLabel className={classes.theLabel}>
                             Write the time, when you are able to play:
                         </InputLabel>
-                        <TextField className={classes.formField} label="The Time to Play" variant="outlined" required/>
+                        <TextField 
+                        className={classes.formField} 
+                        label="The Time to Play" 
+                        variant="outlined" 
+                        required
+                        onChange={handleTimeOnChange}
+                        error={playerTime === ""}
+                        helperText={playerTime === "" ? 'Empty!' : ''}
+                        />
                     </Grid>
 
                 </Grid>
                 <Grid className={classes.gridContainer}>
                     <InputLabel className={classes.descbAndContactLabel} style={{marginTop: 25}}>Describe your Post:</InputLabel>
                     <InputLabel className={classes.descbAndContactLabel}>For exaple: How long are you playing, Searching One-Time or Constant partner and etc... </InputLabel>
-                    <TextField multiline rows={8} className={classes.descbAndContactForm} label="Post description" variant="outlined" required/>
+                    <TextField 
+                    multiline 
+                    rows={8} 
+                    className={classes.descbAndContactForm} 
+                    label="Post description" 
+                    variant="outlined" 
+                    required
+                    onChange={handleDescriptionOnChange}
+                    error={playerDescription === ""}
+                    helperText={playerDescription === "" ? 'Empty!' : ''}
+                    />
                 </Grid>
                 <Grid className={classes.gridContainer}>
                     <InputLabel className={classes.descbAndContactLabel} style={{marginTop: 25}}>
                         Write available methods how people can Contact You:
                     </InputLabel>
-                    <TextField multiline rows={4} className={classes.descbAndContactForm} label="Contact Me" variant="outlined" required/>
+                    <TextField 
+                    multiline 
+                    rows={4} 
+                    className={classes.descbAndContactForm} 
+                    label="Contact Me" 
+                    variant="outlined"
+                    required
+                    onChange={handleContactInfoOnChange}
+                    error={playerContactInfo === ""}
+                    helperText={playerContactInfo === "" ? 'Empty!' : ''}
+                    />
                 </Grid>
                 <Divider className={classes.divider} />
                 <Box>
-                    <Button className={classes.submitbutton}>
-                        Submit New Form
-                    </Button>
+                    {((playerName && playerGender && playerNTRP && playerCity
+                        && playerTime && playerDescription && playerContactInfo) === "") ? (
+                            <Button variant="outlined" disabled>Submit Form</Button>
+                        ) : (
+                        <Button variant="outlined" onClick={onSubmitClick}>
+                            Submit Form
+                        </Button>
+                        )}
                 </Box>
+                <Dialog 
+                    open={isOpen}
+                    onClose={handleOnCloseDialog}
+                >
+                    <DialogTitle>
+                        Insert is Completed. Get back to FindPlayer page?
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button onClick={redirectToFindPlayerPage}>Yes</Button>
+                        <Button onClick={handleOnCloseDialog}>No</Button>
+                    </DialogActions>
+                </Dialog>
             </form>
         </Container>
     )

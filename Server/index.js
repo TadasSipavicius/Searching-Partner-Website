@@ -93,6 +93,29 @@ app.post("/tournament/insert", (req, res) =>{
     })
 })
 
+app.post("/findplayer/insert", (req, res) =>{
+
+    const playerName = req.body.playerName;
+    const playerAge = req.body.playerAge;
+    const playerGender = req.body.playerGender;
+    const playerNTRP = req.body.playerNTRP;
+    const playerCity = req.body.playerCity;
+    const playerTime = req.body.playerTime;
+    const playerDescription = req.body.playerDescription;
+    const playerContactInfo = req.body.playerContactInfo;
+    const playerUser_id = req.body.playerUser_id;
+
+    const sqlInsert = "INSERT INTO `findplayer` (`name`, `age`, `gender`, `NTRP`, `city`, `time`, `description`, `contact_info`, `user_id`) VALUES (?,?,?,?,?,?,?,?,?)";
+    db.query(sqlInsert, [playerName, playerAge, playerGender, playerNTRP, playerCity, playerTime, playerDescription, playerContactInfo, playerUser_id], (err, result) => {
+        if(err){
+            console.log(err);
+        } else {
+            console.log("INSERT is SUCCESSFUL");
+            res.send("INSERT is SUCCESSFUL")
+        }
+    })
+})
+
 app.listen(3001, () => {
     console.log("Running on port 3001");
 })
