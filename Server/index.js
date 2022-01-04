@@ -31,6 +31,13 @@ app.get("/tournament/get", (req, res) => {
     })
 })
 
+app.get("/findplayer/get", (req, res) => {
+    const sqlSelectAllFindPlayerForms = "SELECT * FROM findplayer";
+    db.query(sqlSelectAllFindPlayerForms, (err, result) => {
+        res.send(result);
+    })
+})
+
 app.delete("/blog/delete/:blogID", (req, res) =>{
     
     const blogID = req.params.blogID;

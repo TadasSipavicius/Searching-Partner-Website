@@ -1,10 +1,10 @@
 import { Container, createStyles, Divider, Grid, makeStyles, Theme } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
 
 import DescriptionText from '../../Components/DescriptionText';
 import FindPlayerCard from '../../Components/Cards/FindPlayerCard';
 
-import FindPlayerFormData from '../../Data/FindPlayerFormData';
 const useStyles = makeStyles( (theme: Theme) => 
     createStyles({
         main: {
@@ -24,13 +24,19 @@ const useStyles = makeStyles( (theme: Theme) =>
 export default function RecentForms(){
 
     const classes = useStyles();
-
+    const [findPlayerData, setFindPlayerData] = useState<any[]>([]);
+    
+    useEffect(() =>{
+        Axios.get("http://localhost:3001/findplayer/get").then((response) =>{
+            setFindPlayerData(response.data);
+        });
+    }, []);
     return(
         <Container className={classes.main}>
             <DescriptionText name="Recent Form uploads:" />
             <Divider className={classes.dividerTop} />
             <Grid container direction="row" spacing={2}>
-                {FindPlayerFormData.map(item => (
+                {findPlayerData.map(item => (
                     <Grid key={item.id} item xs={8} sm={6} md={4} lg={3}>
                         <FindPlayerCard item={item}/>
                     </Grid>

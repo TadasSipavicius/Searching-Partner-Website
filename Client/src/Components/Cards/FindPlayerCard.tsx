@@ -33,10 +33,16 @@ export default function FindPlayerCard(item){
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {item.item.title}
+                        {"Name: " +item.item.name}
                     </Typography>
                     <Typography className={classes.description}>
-                        {item.item.description}
+                        {"NTRP: " +item.item.NTRP}
+                    </Typography>
+                    <Typography className={classes.description}>
+                        {"City: " + item.item.city}
+                    </Typography>
+                    <Typography className={classes.description}>
+                        {"Time: " + item.item.time}
                     </Typography>
                 </CardContent>
             </CardActionArea>
