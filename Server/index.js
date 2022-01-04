@@ -67,6 +67,21 @@ app.delete("/tournament/delete/:tournamentID", (req, res) =>{
         }
     });
 })
+
+app.delete("/findplayer/delete/:findPlayerID", (req, res) =>{
+
+    const findPlayerID = req.params.findPlayerID;
+    const sqlDeleteFindPlayer = "DELETE FROM findplayer WHERE id = ?"
+    db.query(sqlDeleteFindPlayer, findPlayerID, (err,result)=>{
+        if(err){
+            console.log(err);
+        } else {
+            console.log("DELETE IS SUCCESSFUL");
+            res.send("Successful deletion");
+        }
+    });
+})
+
 app.post("/blog/insert", (req, res) => {
     
     const blogTitle = req.body.blogTitle;
