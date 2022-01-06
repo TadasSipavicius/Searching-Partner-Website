@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/blog/get", (req, res) => {
 
-    const sqlSelectAllBlogs = "SELECT * FROM blog";
+    const sqlSelectAllBlogs = "SELECT * FROM blog ";
     db.query(sqlSelectAllBlogs, (err, result) => {
         res.send(result);
     })

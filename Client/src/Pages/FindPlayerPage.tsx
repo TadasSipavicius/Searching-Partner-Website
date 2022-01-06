@@ -14,20 +14,29 @@ import TableBody from '@mui/material/TableBody';
 
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Dialog, DialogActions, DialogTitle} from '@mui/material';
 
 interface RouteParams {
     id: string
 }    
 
+const useStyles = makeStyles({
+    table: {
+        margin: "0 auto"
+    }
+});
+
 export default function FindPlayerPage() {
 
+    const classes = useStyles();
     const params = useParams<RouteParams>();
     const id = parseInt(params.id);
     const history = useHistory();
     const adminID = process.env.REACT_APP_ADMINISTR_ID;
     const { user } = useAuth0();
-
+    
+    
     const [findPlayerData, setFindPlayerData] = useState<any[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -54,8 +63,8 @@ export default function FindPlayerPage() {
     return(
         <PageContainer>
             {findPlayerData.filter(data => data.id === id).map(item =>(
-                <TableContainer sx={{ maxWidth: 450 }} component={Paper} key={item.id}>
-                    <Table sx={{ maxWidth: 450 }} aria-label="simple table">
+                <TableContainer className={classes.table} sx={{ maxWidth: 500 }} component={Paper} key={item.id}>
+                    <Table sx={{ maxWidth: 500 }} aria-label="simple table">
                         <TableBody>
                             <TableRow key={item.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell >Name:</TableCell>

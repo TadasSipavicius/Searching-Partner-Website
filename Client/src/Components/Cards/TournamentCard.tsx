@@ -1,6 +1,7 @@
-import { Card, CardActionArea, CardContent, CardMedia, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
+import { CardActionArea, CardContent, CardMedia, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
+import Card from '@mui/material/Card';
 
 import TournamentPhoto from '../../Assets/Images/tennis_tournament.jpg';
 const useStyles = makeStyles( (theme: Theme) => 
@@ -11,6 +12,9 @@ const useStyles = makeStyles( (theme: Theme) =>
         },
         description: {
             fontSize: 14
+        },
+        title:{
+            minHeight: 70
         }
     }))
 
@@ -24,7 +28,7 @@ export default function TournamentCard(item){
     }
 
     return(
-        <Card className={classes.card}>
+        <Card sx={{ maxHeight: 405 }} className={classes.card}>
             <CardActionArea onClick={handleClick}>
             <CardMedia
                 component="img"
@@ -33,7 +37,7 @@ export default function TournamentCard(item){
                 alt="Tennis image"
             />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography className={classes.title} gutterBottom variant="h5" component="div">
                         {item.item.tournament_title}
                     </Typography>
                     <Typography className={classes.description}>

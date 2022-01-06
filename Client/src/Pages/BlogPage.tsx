@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import Axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useHistory } from 'react-router';
+import { makeStyles } from '@mui/styles';
 
 import PageContainer from '../Components/PageContainer';
 import ContactForm from '../Components/ContactForm';
@@ -14,8 +15,18 @@ interface RouteParams {
     id: string
 }    
 
+const useStyles = makeStyles({
+    title: {
+        color: "black",
+        paddingBottom: 10,
+    },
+    description: {
+
+    }
+});
 export default function BlogPage() {
 
+    const classes = useStyles();
     const params = useParams<RouteParams>();
     const id = parseInt(params.id);
     const history = useHistory();
@@ -52,8 +63,8 @@ export default function BlogPage() {
         <PageContainer>
             {blogData.filter(data => data.id === id).map((item: BlogType) =>(
                 <Container key={item.id}>
-                    <Typography>{item.blog_title}</Typography>
-                    <Typography>{item.blog_text}</Typography>
+                    <Typography variant='h3' className={classes.title}>{item.blog_title}</Typography>
+                    <Typography className={classes.description}>{item.blog_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
                         <Button variant="contained" color="error" onClick={() => deleteBlog(item.id)}>Delete</Button>
