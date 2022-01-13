@@ -27,7 +27,7 @@ export default function RecentNews(){
     const API_URL = process.env.REACT_APP_API_URL!;
     
     useEffect(() =>{
-        Axios.get(`${API_URL}/blog/get`).then((response) =>{
+        Axios.get(`https://partnerfinderis-api.herokuapp.com/blog/get`).then((response) =>{
             setBlogData(response.data);
         });
     }, [API_URL]);
