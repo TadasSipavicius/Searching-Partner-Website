@@ -27,7 +27,7 @@ export default function RecentTournaments(){
     const API_URL = process.env.REACT_APP_API_URL!;
 
     useEffect(() =>{
-        Axios.get(`${API_URL}/tournament/get`).then((response) =>{
+        Axios.get(`https://partnerfinderis-api.herokuapp.com/tournament/get`).then((response) =>{
             setTournamentData(response.data);
         });
     }, [API_URL]);

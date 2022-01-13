@@ -28,7 +28,7 @@ export default function RecentForms(){
     const API_URL = process.env.REACT_APP_API_URL!;
 
     useEffect(() =>{
-        Axios.get(`${API_URL}/findplayer/get`).then((response) =>{
+        Axios.get(`https://partnerfinderis-api.herokuapp.com/findplayer/get`).then((response) =>{
             setFindPlayerData(response.data);
         });
     }, [API_URL]);
