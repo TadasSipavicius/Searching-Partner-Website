@@ -10,7 +10,7 @@ export default function AddBlogForm(){
     const [blogTitle, setBlogTitle] = useState("");
     const [blogText, setBlogText] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-
+    const API_URL = process.env.REACT_APP_API_URL!;
     const { user } = useAuth0();
     const history = useHistory();
 
@@ -30,7 +30,7 @@ export default function AddBlogForm(){
     }
 
     const onSubmitClick = async () =>{
-        await Axios.post("http://localhost:3001/blog/insert", {
+        await Axios.post(`${API_URL}/blog/insert`, {
             blogTitle: blogTitle,
             blogText: blogText,
             user_id: user?.sub

@@ -39,15 +39,15 @@ export default function FindPlayerPage() {
     
     const [findPlayerData, setFindPlayerData] = useState<any[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-
+    const API_URL = process.env.REACT_APP_API_URL!;
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
     // !!!
     useEffect(() =>{
-        Axios.get("http://localhost:3001/findplayer/get").then((response) =>{
+        Axios.get(`${API_URL}/findplayer/get`).then((response) =>{
             setFindPlayerData(response.data);
         });
-    }, []);
+    }, [API_URL]);
 
     const handleOnCloseDialog = () =>{
         setIsOpen(false);
@@ -57,7 +57,7 @@ export default function FindPlayerPage() {
         history.push('/');
     }
     const deleteTournament = async (findPlayerID) =>{
-        await Axios.delete(`http://localhost:3001/findplayer/delete/${findPlayerID}`);
+        await Axios.delete(`${API_URL}/findplayer/delete/${findPlayerID}`);
         setIsOpen(true);
     }
     return(

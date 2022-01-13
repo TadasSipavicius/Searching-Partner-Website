@@ -34,16 +34,16 @@ export default function TournamentPage() {
 
     const [tournamentData, setTournamentData] = useState<any[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-   
+    const API_URL = process.env.REACT_APP_API_URL!;
 
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
     // !!!
     useEffect(() =>{
-        Axios.get("http://localhost:3001/tournament/get").then((response) =>{
+        Axios.get(`${API_URL}/tournament/get`).then((response) =>{
             setTournamentData(response.data);
         });
-    }, []);
+    }, [API_URL]);
 
     const handleOnCloseDialog = () =>{
         setIsOpen(false);
@@ -54,7 +54,7 @@ export default function TournamentPage() {
     }
 
     const deleteTournament = async (tournamentID) =>{
-        await Axios.delete(`http://localhost:3001/tournament/delete/${tournamentID}`);
+        await Axios.delete(`${API_URL}/tournament/delete/${tournamentID}`);
         setIsOpen(true);
     }
 
