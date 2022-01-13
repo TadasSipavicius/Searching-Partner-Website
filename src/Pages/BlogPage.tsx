@@ -35,16 +35,16 @@ export default function BlogPage() {
 
     const [blogData, setBlogData] = useState<BlogType[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-
+    const API_URL = process.env.REACT_APP_API_URL!;
     
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
     // !!!
     useEffect(() =>{
-        Axios.get("http://localhost:3001/blog/get").then((response) =>{
+        Axios.get(`${API_URL}/blog/get`).then((response) =>{
             setBlogData(response.data);
         });
-    }, []);
+    }, [API_URL]);
 
     const handleOnCloseDialog = () =>{
         setIsOpen(false);
@@ -55,7 +55,7 @@ export default function BlogPage() {
     }
 
     const deleteBlog = async (blogID) =>{
-        await Axios.delete(`http://localhost:3001/blog/delete/${blogID}`);
+        await Axios.delete(`${API_URL}/blog/delete/${blogID}`);
         setIsOpen(true);
     }
 

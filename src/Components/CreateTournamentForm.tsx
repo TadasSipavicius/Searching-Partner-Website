@@ -10,7 +10,8 @@ export default function CreateTournamentForm(){
     const [tournamentTitle, setTournamentTitle] = useState("");
     const [tournamentText, setTournamentText] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-
+    const API_URL = process.env.REACT_APP_API_URL!;
+    
     const { user } = useAuth0();
     const history = useHistory();
 
@@ -30,7 +31,7 @@ export default function CreateTournamentForm(){
     }
 
     const onSubmitClick = async () =>{
-        await Axios.post("http://localhost:3001/tournament/insert", {
+        await Axios.post(`${API_URL}/tournament/insert`, {
             tournamentTitle: tournamentTitle,
             tournamentText: tournamentText,
             user_id: user?.sub

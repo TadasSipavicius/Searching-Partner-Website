@@ -24,12 +24,13 @@ export default function RecentTournaments(){
 
     const classes = useStyles();
     const [tournamentData, setTournamentData] = useState<any[]>([]);
-    
+    const API_URL = process.env.REACT_APP_API_URL!;
+
     useEffect(() =>{
-        Axios.get("http://localhost:3001/tournament/get").then((response) =>{
+        Axios.get(`${API_URL}/tournament/get`).then((response) =>{
             setTournamentData(response.data);
         });
-    }, []);
+    }, [API_URL]);
 
     return(
         <Container className={classes.main}>

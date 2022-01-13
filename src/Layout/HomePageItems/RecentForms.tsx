@@ -25,12 +25,13 @@ export default function RecentForms(){
 
     const classes = useStyles();
     const [findPlayerData, setFindPlayerData] = useState<any[]>([]);
-    
+    const API_URL = process.env.REACT_APP_API_URL!;
+
     useEffect(() =>{
-        Axios.get("http://localhost:3001/findplayer/get").then((response) =>{
+        Axios.get(`${API_URL}/findplayer/get`).then((response) =>{
             setFindPlayerData(response.data);
         });
-    }, []);
+    }, [API_URL]);
     return(
         <Container className={classes.main}>
             <DescriptionText name="Recent Form uploads:" />

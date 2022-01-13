@@ -88,7 +88,7 @@ export default function CreatePostForm(){
     const [playerDescription, setPlayerDescription] = useState("");
     const [playerContactInfo, setPlayerContactInfo] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-
+    const API_URL = process.env.REACT_APP_API_URL!;
     
 
     const handleNameOnChange = (e) =>{
@@ -125,7 +125,7 @@ export default function CreatePostForm(){
     }
 
     const onSubmitClick = async () =>{
-        await Axios.post("http://localhost:3001/findplayer/insert", {
+        await Axios.post(`${API_URL}/findplayer/insert`, {
             playerName: playerName,
             playerAge: playerAge,
             playerGender: playerGender,

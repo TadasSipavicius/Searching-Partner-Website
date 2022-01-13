@@ -24,12 +24,13 @@ export default function RecentNews(){
 
     const classes = useStyles();
     const [blogData, setBlogData] = useState<any[]>([]);
+    const API_URL = process.env.REACT_APP_API_URL!;
     
     useEffect(() =>{
-        Axios.get("http://localhost:3001/blog/get").then((response) =>{
+        Axios.get(`${API_URL}/blog/get`).then((response) =>{
             setBlogData(response.data);
         });
-    }, []);
+    }, [API_URL]);
     
     return(
         <Container className={classes.main}>
