@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Dialog, DialogActions, DialogTitle, Typography } from '@material-ui/core';
 import Button from '@mui/material/Button';
-import { makeStyles } from '@mui/styles';
 import {useParams} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Axios from 'axios';
@@ -13,19 +12,8 @@ interface RouteParams {
     id: string
 }    
 
-const useStyles = makeStyles({
-    title: {
-        color: "black",
-        paddingBottom: 10
-    },
-    description: {
-
-    }
-});
-
 export default function TournamentPage() {
 
-    const classes = useStyles();
     const params = useParams<RouteParams>();
     const id = parseInt(params.id);
     const history = useHistory();
@@ -62,8 +50,8 @@ export default function TournamentPage() {
         <PageContainer>
             {tournamentData.filter(data => data.id === id).map(item =>(
                 <Container key={item.id}>
-                    <Typography variant='h3' className={classes.title}>{item.tournament_title}</Typography>
-                    <Typography className={classes.description}>{item.tournament_text}</Typography>
+                    <Typography variant='h3'>{item.tournament_title}</Typography>
+                    <Typography>{item.tournament_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
                         <Button variant="contained" color="error" onClick={() => deleteTournament(item.id)}>Delete</Button>
