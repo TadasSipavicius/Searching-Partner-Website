@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Dialog, DialogActions, DialogTitle, Typography } from '@material-ui/core';
+import { Container, Dialog, DialogActions, DialogTitle } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {useParams} from 'react-router-dom';
 import Axios from 'axios';
@@ -14,6 +15,9 @@ interface RouteParams {
     id: string
 }    
 
+const blog_textStyle = {
+    "white-space": "pre-wrap"
+}
 export default function BlogPage() {
 
     const params = useParams<RouteParams>();
@@ -25,6 +29,7 @@ export default function BlogPage() {
     const [blogData, setBlogData] = useState<BlogType[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const API_URL = process.env.REACT_APP_API_URL!;
+
     
     // !!!
     // Reikia padaryt, kad paimtu pagal ID, o ne visus
@@ -53,7 +58,7 @@ export default function BlogPage() {
             {blogData.filter(data => data.id === id).map((item: BlogType) =>(
                 <Container key={item.id}>
                     <Typography variant='h3'>{item.blog_title}</Typography>
-                    <Typography >{item.blog_text}</Typography>
+                    <Typography sx={blog_textStyle} >{item.blog_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
                         <Button variant="contained" color="error" onClick={() => deleteBlog(item.id)}>Delete</Button>

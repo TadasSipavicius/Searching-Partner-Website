@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Dialog, DialogActions, DialogTitle, Typography } from '@material-ui/core';
+import { Container, Dialog, DialogActions, DialogTitle } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {useParams} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -12,6 +13,9 @@ interface RouteParams {
     id: string
 }    
 
+const tournament_textStyle = {
+    "white-space": "pre-wrap"
+}
 export default function TournamentPage() {
 
     const params = useParams<RouteParams>();
@@ -51,7 +55,7 @@ export default function TournamentPage() {
             {tournamentData.filter(data => data.id === id).map(item =>(
                 <Container key={item.id}>
                     <Typography variant='h3'>{item.tournament_title}</Typography>
-                    <Typography>{item.tournament_text}</Typography>
+                    <Typography sx={tournament_textStyle}>{item.tournament_text}</Typography>
                     {((user?.sub === item.user_id) || (adminID === user?.sub)) ? (
                         <>
                         <Button variant="contained" color="error" onClick={() => deleteTournament(item.id)}>Delete</Button>
